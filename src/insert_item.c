@@ -15,11 +15,11 @@
 #include <string.h>
 #include "my.h"
 
-void purge_str(char *str, int *x, int *y, int *color)
+void purge_str(char **array, int *x, int *y, int *color)
 {
-	*x = str[0] - '0';
-	*y = str[2] - '0';
-	*color = str[4] + '0';
+	*x = my_atoi(array[0]);
+	*y = my_atoi(array[1]);
+	*color = my_atoi(array[2]);
 }
 
 void insert_item2(char **item, int x, int y, int fd)
@@ -37,8 +37,9 @@ char **insert_item(char *filename, int *x, int *y, int *color)
 {
 	int fd = open(filename, O_RDONLY);
 	char *str = get_next_line(fd);
+	char **array = my_str_to_word_array(str);
 
-	purge_str(str, x, y , color);
+	purge_str(array, x, y , color);
 	char **item =  my_malloc2((*x) + 1, (*y) + 1);
 
 	insert_item2(item, *x, *y, fd);

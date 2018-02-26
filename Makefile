@@ -14,6 +14,8 @@ SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)check_error.c \
 		$(SRCDIR)insert_item.c \
 		$(SRCDIR)get_next_line.c \
+		$(SRCDIR)help.c \
+		$(SRCDIR)debug_mode.c
 
 OBJ	=	$(SRC:.c=.o)
 

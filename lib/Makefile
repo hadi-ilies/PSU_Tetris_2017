@@ -11,6 +11,9 @@ SRC	=	my_strlen.c \
 		my_printf.c \
 		my_malloc.c \
 		my_malloc2.c \
+		strncmp.c \
+		my_atoi.c \
+		my_str_to_word_array.c
 
 OBJ	=	$(SRC:.c=.o)
 

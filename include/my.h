@@ -20,6 +20,7 @@ typedef struct {
 	char **item;
 }item_t;
 
+char **my_str_to_word_array(char *str);
 size_t my_putchar(int fd, const char c);
 size_t my_putstr(int fd, const char *str);
 size_t my_putnbr(int fd, int nb);

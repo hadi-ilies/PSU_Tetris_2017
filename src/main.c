@@ -5,7 +5,6 @@
 ** main.c
 */
 
-#include "prototype.h"
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -63,10 +62,12 @@ int main(int argc, char **argv)
 {
 	if (argc == 1)
 		return (84);
-	/*if (my_strncmp(argv[1], "-d", 3) == 0)
+	if (my_strncmp(argv[1], "-help", 5) == 0)
+		return (help());
+	if (my_strncmp(argv[1], "-d", 3) == 0) {
 		debug_mode(argv);
-		return (0);*/
-	if (test_file(argv) == false)
-		return (84);
+		get_next_line(0);
+	} if (test_file(argv) == false)
+		  return (84);
 	return (item_tetris(argc, argv));
 }
