@@ -11,7 +11,10 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
+		$(LIBDIR)my_strlen.c \
 		$(LIBDIR)my_printf.c \
+		$(LIBDIR)my_malloc.c \
+		$(LIBDIR)my_malloc2.c \
 
 OBJ	=	$(SRC:.c=.o)
 

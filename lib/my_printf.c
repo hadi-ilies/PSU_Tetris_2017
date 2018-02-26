@@ -9,12 +9,12 @@
 #include <unistd.h>
 #include "prototype.h"
 
-size_t my_putchar(int fd, char c)
+size_t my_putchar(int fd, const char c)
 {
 	return (write(fd, &c, 1));
 }
 
-size_t my_putstr(int fd, char *str)
+size_t my_putstr(int fd, const char *str)
 {
 	size_t i = 0;
 
@@ -33,7 +33,7 @@ size_t my_putnbr(int fd, int nb)
 	return (size);
 }
 
-size_t print_var(int fd, va_list arg, char type)
+size_t print_var(int fd, va_list arg, const char type)
 {
 	size_t size = 0;
 
@@ -42,7 +42,7 @@ size_t print_var(int fd, va_list arg, char type)
 	return (size);
 }
 
-size_t my_printf(int fd, char *str, ...)
+size_t my_printf(int fd, const char *str, ...)
 {
 	va_list arg;
 	size_t size = 0;

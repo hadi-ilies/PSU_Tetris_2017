@@ -1,0 +1,8 @@
+/*
+** EPITECH PROJECT, 2018
+** tetris
+** File description:
+** my_strlen.c
+*/
+
+ssize_t ()
