@@ -11,7 +11,7 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
-		$(SRCDIR)$(LIBDIR)my_printf.c \
+		$(LIBDIR)my_printf.c \
 
 OBJ	=	$(SRC:.c=.o)
 
