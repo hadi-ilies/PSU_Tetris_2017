@@ -14,10 +14,6 @@ SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)check_error.c \
 		$(SRCDIR)insert_item.c \
 		$(SRCDIR)get_next_line.c \
-		$(LIBDIR)my_strlen.c \
-		$(LIBDIR)my_printf.c \
-		$(LIBDIR)my_malloc.c \
-		$(LIBDIR)my_malloc2.c \
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -26,15 +22,20 @@ CFLAGS	+=	-W -Wall -Wextra
 CFLAGS	+=	-fdiagnostics-color
 CFLAGS	+=	-lncurses
 
+LDFLAGS	=	-L $(LIBDIR) -lmy
+
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-		cc -o $(NAME) $(OBJ) $(CFLAGS)
+		make -C $(LIBDIR)
+		cc -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
 
 clean	:
+		make clean -C $(LIBDIR)
 		rm -f $(OBJ)
 
 fclean	:	clean
+		make fclean -C $(LIBDIR)
 		rm -f $(NAME)
 
 re	:	fclean all
