@@ -5,6 +5,9 @@
 ** my.h
 */
 
+#ifndef MY_H_
+#define MY_H_
+
 #include <stdlib.h>
 #include "get_next_line.h"
 
@@ -24,3 +27,5 @@ size_t my_printf(int fd, const char *str, ...);
 ssize_t my_strlen(const char *str);
 void *my_malloc(size_t size);
 void **my_malloc2(size_t nb_case_x, size_t nb_case_y);
+
+#endif
