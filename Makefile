@@ -5,12 +5,15 @@
 ## Makefile
 ##
 
-NAME	=	a.out
+NAME	=	tetris
 
 SRCDIR	=	src/
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
+		$(SRCDIR)check_error.c \
+		$(SRCDIR)insert_item.c \
+		$(SRCDIR)get_next_line.c \
 		$(LIBDIR)my_strlen.c \
 		$(LIBDIR)my_printf.c \
 		$(LIBDIR)my_malloc.c \
@@ -20,6 +23,8 @@ OBJ	=	$(SRC:.c=.o)
 
 CFLAGS	+=	-I./include
 CFLAGS	+=	-W -Wall -Wextra
+CFLAGS	+=	-fdiagnostics-color
+CFLAGS	+=	-lncurses
 
 all	:	$(NAME)
 

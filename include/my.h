@@ -6,6 +6,16 @@
 */
 
 #include <stdlib.h>
+#include "get_next_line.h"
+
+typedef struct {
+	int x;
+	int y;
+	int color;
+	char *filename;
+	char *str;
+	char **item;
+}item_t;
 
 size_t my_putchar(int fd, const char c);
 size_t my_putstr(int fd, const char *str);
