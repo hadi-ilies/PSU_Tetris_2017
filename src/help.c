@@ -34,5 +34,5 @@ bool help(void)
 	printf(" the map (def: 20,10)\n");
 	printf("-w without-next    Hide next tetrimino (def: false)\n");
 	printf("-d debug           Debug mode (def: false)\n");
-	return (true);
+	return (false);
 }

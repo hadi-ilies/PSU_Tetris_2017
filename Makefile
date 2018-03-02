@@ -11,11 +11,16 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
-		$(SRCDIR)check_error.c \
+		$(SRCDIR)pars_key_command.c \
+		$(SRCDIR)pars_key_command2.c \
+		$(SRCDIR)pars_key_command3.c \
+		$(SRCDIR)parsing.c \
 		$(SRCDIR)insert_item.c \
 		$(SRCDIR)get_next_line.c \
 		$(SRCDIR)help.c \
-		$(SRCDIR)debug_mode.c
+		$(SRCDIR)debug_mode.c \
+		$(SRCDIR)load_info_from_map.c \
+		$(SRCDIR)map.c
 
 OBJ	=	$(SRC:.c=.o)
 
@@ -23,6 +28,7 @@ CFLAGS	+=	-I./include
 CFLAGS	+=	-W -Wall -Wextra
 CFLAGS	+=	-fdiagnostics-color
 CFLAGS	+=	-lncurses
+CFLAGS	+=	-g
 
 LDFLAGS	=	-L $(LIBDIR) -lmy
 

@@ -15,8 +15,8 @@ int count_space(char *str)
 	int count = 2;
 
 	for (int i = 0; str[i] != '\0'; i++) {
-		if (str[i] == ' ' && count == 0
-			|| str[i] == '\t' && count == 0)
+		if ((str[i] == ' ' && count == 0)
+		|| (str[i] == '\t' && count == 0))
 			count = 1;
 		if (str[i] > ' ' ) {
 			count == 1 ? nb_word++ : 0;
@@ -43,8 +43,8 @@ char **my_str_to_word_array(char *str)
 	int j = 0;
 
 	for (int i = 0; str[i] != '\0'; i++) {
-		if (str[i] == ' ' && count == 0
-		|| str[i] == '\t' && count == 0)
+		if ((str[i] == ' ' && count == 0)
+		|| (str[i] == '\t' && count == 0))
 			count = 1;
 		if (str[i] > ' ' ) {
 			count == 1 ? nb_word++ : 0;

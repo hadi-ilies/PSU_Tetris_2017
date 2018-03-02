@@ -15,6 +15,7 @@
 #include <string.h>
 #include "my.h"
 
+/*
 void purge_str(char **array, int *x, int *y, int *color)
 {
 	*x = my_atoi(array[0]);
@@ -45,4 +46,4 @@ char **insert_item(char *filename, int *x, int *y, int *color)
 	insert_item2(item, *x, *y, fd);
 	return (item);
 
-}
+}*/

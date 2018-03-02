@@ -10,6 +10,7 @@
 
 #include <stdlib.h>
 #include "get_next_line.h"
+#include "macros.h"
 
 typedef struct {
 	int x;
@@ -20,6 +21,11 @@ typedef struct {
 	char **item;
 }item_t;
 
+char *concat(char *s1, char *s2);
+char **mem_alloc_2d_array(int nb_rows, int nb_cols);
+int my_atoi(char *str);
+ssize_t my_strlen(const char *str);
+int my_strncmp(const char *s1, const char *s2, int n);
 char **my_str_to_word_array(char *str);
 size_t my_putchar(int fd, const char c);
 size_t my_putstr(int fd, const char *str);
