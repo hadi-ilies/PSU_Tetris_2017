@@ -45,7 +45,7 @@ void keydrop(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "d";
+			command = "^EOB";
 	} if (command[0] == ' ')
 		printf("Key Drop :  (space)\n");
 	else
@@ -83,7 +83,7 @@ void keypause(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "p";
+			command = " ";
 	} if (command[0] == ' ')
 		  printf("Key Pause :  (space)\n");
 	else

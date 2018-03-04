@@ -101,7 +101,7 @@ void keyturn(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "t";
+			command = "^EOA";
 	} if (command[0] == ' ')
 		printf("Key Turn :  (space)\n");
 	else

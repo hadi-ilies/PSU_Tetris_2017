@@ -82,10 +82,10 @@ int main(int argc, char **argv)
 {
 	bool bol = false;
 
-	if (parsing(argv, argc) == true)
-		return (84);
 	if (my_strncmp(argv[1], "--help", 5) == 0)
 		return (help());
+	if (parsing(argv, argc) == true)
+		return (84);
 	if (there_is_d(argv, argc) == 1) {
 		debug_mode(argv, argc);
 		bol = true;
