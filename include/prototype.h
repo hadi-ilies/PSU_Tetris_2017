@@ -10,7 +10,7 @@
 
 char *display_name(char *str);
 void debug_mode_2(char **argv, int argc, item_t *item);
-void debug_mode_3(char **argv, item_t *item);
+void debug_mode_3(char **argv, item_t *item, int *sort);
 char *command_l(char *command);
 void keydrop(char **argv, int argc);
 void keypause(char **argv, int argc);

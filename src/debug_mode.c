@@ -39,6 +39,25 @@ char *display_name(char *str)
 	return (S1);
 }
 
+int *sort_debug(item_t *item)
+{
+	int *sort = my_malloc(sizeof(int) * (count_file() + 1));
+	int i = 0;
+
+	for (i = 0; i < count_file(); i++) {
+		if (item[i].filename[0] <= '9' && item[i].filename[0] >= '0')
+			sort[i] = item[i].filename[0] - '0';
+		else
+			sort[i] = item[i].filename[0];
+	}
+	sort_b(sort, i);
+	//printf("start here\n", sort[i]);
+	//for (i = 0; i < count_file(); i++)
+	//	printf("%d | ", sort[i]);
+	//exit(0);
+	return (sort);
+}
+
 void debug_mode_2(char **argv, int argc, item_t *item)
 {
 	keyleft(argv, argc);
@@ -50,21 +69,64 @@ void debug_mode_2(char **argv, int argc, item_t *item)
 	without_next(argv, argc);
 	level(argv, argc);
 	mapsize(argv, argc);
-	printf("Tetriminos:  %d\n", count_file());
-	debug_mode_3(argv, item);
+	printf("Tetriminos :  %d\n", count_file());
+	sort_debug(item);
+	debug_mode_3(argv, item, sort_debug(item));
 }
 
-void debug_mode_3(char **argv, item_t *item)
+//je vais le remettre a la norme si ca passes a la mouli
+void debug_mode_3(char **argv, item_t *item, int *sort)
 {
 	char *str = NULL;
 
 	for (int i = 0; i < count_file(); i++) {
-		printf("Tetriminos:  Name : %s : Size %d*%d",  D_N, item[i].x, item[i].y);
-		printf(": Colors %d :\n", item[i].color);
-		for (int j = 0; j < item[i].y; j++)
-			printf("%s\n", item[i].item[j]);
+		for (int j = 0; j < count_file(); j++) {
+			if (item[j].filename[0] <= '9' && item[j].filename[0] >= '0') {
+				if (sort[i] == item[j].filename[0] - '0') {
+					if (item[j].x == -1)
+						printf("Tetriminos :  Name %s :  Error\n", D_N);
+					else {
+						printf("Tetriminos :  Name %s :  Size %d*%d",  D_N, item[j].x, item[j].y);
+						printf(" :  Color %d :\n", item[j].color);
+						for (int k = 0; k < item[j].y; k++)
+							printf("%s\n", item[j].item[k]);
+					}
+				}
+			}
+			else if (sort[i] == item[j].filename[0]) {
+				if (item[j].x == -1)
+						printf("Tetriminos :  Name %s :  Error\n", D_N);
+					else {
+						printf("Tetriminos :  Name %s :  Size %d*%d",  D_N, item[j].x, item[j].y);
+						printf(" :  Color %d :\n", item[j].color);
+						for (int k = 0; k < item[j].y; k++)
+							printf("%s\n", item[j].item[k]);
+					}
+			}
+		}
 	}
 	printf("Press any key to start Tetris\n");
 	while (str == NULL)
 		str = get_next_line(0);
 }
+
+
+
+
+
+
+
+/*if (item[i].x == -1)
+  printf("Tetriminos:  Name %s : Error\n", D_N);
+  else {
+  printf("Tetriminos:  Name %s : Size %d*%d",  D_N, item[i].x, item[i].y);
+  printf(": Colors %d :\n", item[i].color);
+  for (int j = 0; j < item[i].y; j++)
+  printf("%s\n", item[i].item[j]);
+  }
+  }
+  printf("Press any key to start Tetris\n");
+  while (str == NULL)
+  str = get_next_line(0);
+
+  }*/

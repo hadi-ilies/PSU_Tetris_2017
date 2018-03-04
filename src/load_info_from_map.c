@@ -35,6 +35,19 @@ void purge_str(item_t *item, int *i, int fd)
 	}
 }
 
+bool check_file(item_t *item, int *i) // update check_file i must manage error
+{
+	char **array = my_str_to_word_array(item[*i].str);
+
+	if (array[1] == NULL || array[2] == NULL)
+		return (false);
+	for (int k = 0; array[k] != NULL; k++)
+		for (int j = 0; array[k][j] != '\0'; j++)
+			if (array[k][j] < '0' || array[k][j] > '9')
+				return (false);
+	return (true);
+}
+
 void init_item(item_t *item)
 {
 	int fd = 0;
@@ -45,7 +58,7 @@ void init_item(item_t *item)
 		fd = open(str, O_RDONLY);
 		fd == -1 ? exit(84) : 0;
 		item[i].str = get_next_line(fd);
-		purge_str(item, &i, fd);
+		check_file(item, &i) == false ? item[i].x = -1 : (purge_str(item, &i, fd));//faire gestionfile
 	}
 }
 

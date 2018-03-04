@@ -6,7 +6,7 @@
 */
 
 #pragma once
-#define D_N display_name(item[i].filename)
+#define D_N display_name(item[j].filename)//mettre i
 #define L_L my_strncmp(argv[*i], "-L", 2) == -1 && my_strncmp(argv[*i], "-l", 2) == -1
 #define R_T my_strncmp(argv[*i], "-r", 2) == -1 && my_strncmp(argv[*i], "-t", 2) == -1
 #define D_Q my_strncmp(argv[*i], "-d", 2) == -1 && my_strncmp(argv[*i], "-q", 2) == -1

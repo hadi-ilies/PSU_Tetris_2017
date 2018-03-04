@@ -44,7 +44,7 @@ int item_tetris(int argc, char **argv)
 	char **map = map_cr("map");
 	char **title = map_cr("titre");
 
-	printf("row : %d|col : %d\n", count_row_map("map"), count_col_map("map"));
+	//printf("row : %d|col : %d\n", count_row_map("map"), count_col_map("map"));
 	init_display_screen(title, map, item);
 	while (1) {
 		if (read(0, key, 3) == 1 && key[0] == 27)
