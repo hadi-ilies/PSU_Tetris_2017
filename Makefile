@@ -19,6 +19,7 @@ SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)pars_key_command2.c \
 		$(SRCDIR)merge_sort.c \
 		$(SRCDIR)pars_key_command3.c \
+		$(SRCDIR)parsing2.c \
 		$(SRCDIR)parsing.c \
 		$(SRCDIR)insert_item.c \
 		$(SRCDIR)get_next_line.c \

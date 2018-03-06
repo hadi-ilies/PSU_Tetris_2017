@@ -98,15 +98,14 @@ int there_is_d(char **argv, int argc)
 int main(int argc, char **argv)
 {
 	bool bol = false;
+	game_t game;
 
-	check_dir();
-	if (argc == 1) {
-		game_t game = game_create(argc, argv); //contient tout les info du jeu
+	parsing(argv, argc);
+	if (my_strncmp(argv[1], "--help", 5) == 0)
+		return (help(argv));
+	game = game_create(argc, argv); //contient tout les info du jeu
+	if (there_is_d(argv, argc) == 0)
 		return (item_tetris(argc, argv));
-	} if (my_strncmp(argv[1], "--help", 5) == 0)
-		return (help());
-	if (parsing(argv, argc) == true)
-		return (84);
 	if (there_is_d(argv, argc) == 1) {
 		debug_mode(argv, argc);
 		bol = true;

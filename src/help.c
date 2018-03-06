@@ -15,9 +15,9 @@
 #include <string.h>
 #include "my.h"
 
-bool help(void)
+bool help(char **argv)
 {
-	my_printf(1, "USAGE:\t./tetris [options]\n");
+	my_printf(1, "USAGE:\t%s [options]\n", argv[0]);
 	my_printf(1, "Options:\n --help\t\t\tDisplay this help\n");
 	my_printf(1, " -L --level={num}\tStart Tetris at level num (def: 1)\n");
 	my_printf(1, " -l --key-left={K}\tMove the tetrimino LEFT using the K");

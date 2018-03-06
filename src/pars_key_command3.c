@@ -37,7 +37,7 @@ void without_next(char **argv, int argc)
 
 char *command_size(char *size)
 {
-	char *str = my_malloc(sizeof(char) * 12);
+	char *str = my_malloc(sizeof(char) * my_strlen(size));
 	int i = 0;
 	int j = 0;
 

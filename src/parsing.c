@@ -25,24 +25,34 @@ bool parse_touch(char **argv, int *i)
 		return (false);
 }
 
-bool parse_arg(char **argv, int *i)
+void parse_arg(char **argv, int *i)
 {
 	if (my_strlen(argv[*i]) >= 2 && L_L && R_T && D_Q && P_W && D_LEV && K_L
-	&& K_R && K_T && K_D && K_Q && K_P && M_S && W_N && DEG ) {
-		return (true);
+	&& K_R && K_T && K_D && K_Q && K_P && M_S && W_N && DEG && HELP) {
+		exit (84);
 	} if (my_strlen(argv[*i]) == 1 && parse_touch(argv, i) == false)
-	      return (true);
+		exit (84);
 	else
-		return (false);
+		return;
 }
 
-bool parsing(char **argv, int argc)
+void check_last_arg(char **argv, int argc)
 {
-	if (argc == 1)
-		return (true);
-	for (int i = 1; i < argc; i++) {
-		if (parse_arg(argv, &i) == true)
-			return (true);
-	}
-	return (false);
+	for (int i = 0; i < argc; i++)
+		if (argv[i][0] == '-' && argv[i][1] != 'D' && argv[i][1] != '-'
+		&& argv[i][1] != 'w' && argv[i + 1] == NULL)
+			exit (84);
+}
+
+void parsing(char **argv, int argc)
+{
+	check_dir();
+	check_last_arg(argv, argc);
+	check_error_size(argv, argc);
+	game_t game = game_create(argc, argv);
+
+	there_is_error_size(&game);
+	for (int i = 1; i < argc; i++)
+		parse_arg(argv, &i);
+	return;
 }

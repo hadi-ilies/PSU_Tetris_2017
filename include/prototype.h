@@ -42,5 +42,5 @@ void init_item(item_t *item);
 item_t *create_item(void);
 int count_file(void);
 int take_filename(item_t *item);
-bool help(void);
+bool help(char **argv);
 #endif
