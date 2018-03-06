@@ -11,6 +11,10 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
+		$(SRCDIR)check_dir.c \
+		$(SRCDIR)save_command_game2.c \
+		$(SRCDIR)save_command_game.c \
+		$(SRCDIR)game_create.c \
 		$(SRCDIR)pars_key_command.c \
 		$(SRCDIR)pars_key_command2.c \
 		$(SRCDIR)merge_sort.c \

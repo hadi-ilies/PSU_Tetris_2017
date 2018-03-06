@@ -7,7 +7,16 @@
 
 #ifndef PROTOTYPE_H_
 #define PROTOTYPE_H_
-
+int save_mapsize_height(char **argv, int argc);
+int save_mapsize_width(char **argv, int argc);
+int save_keyturn(char **argv, int argc);
+int save_keydrop(char **argv, int argc);
+bool save_without_next(char **argv, int argc);
+int save_keyquit(char **argv, int argc);
+int save_keypause(char **argv, int argc);
+int save_level(char **argv, int argc);
+int save_keyleft(char **argv, int argc);
+game_t game_create(int argc, char **argv);
 char *display_name(char *str);
 void debug_mode_2(char **argv, int argc, item_t *item);
 void debug_mode_3(char **argv, item_t *item, int *sort);

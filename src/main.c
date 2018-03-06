@@ -29,14 +29,30 @@ void init_display_screen(char **title, char **map, item_t *item)
 		mvprintw(LINES / 2 - count_row_map("map") / 2 + i,
 			(COLS/2) - (count_col_map("map") / 2), map[i]);
 	} for (int i = 0; i < item[3].y; i++)
-		  mvprintw(LINES / 2 - (item[3].y / 2) / 2 + i,
+		mvprintw(LINES / 2 - (item[3].y / 2) / 2 + i,
 			(COLS/2) - (item[3].x / 2), item[3].item[i]);
 	refresh();
 }
 
 int item_tetris(int argc, char **argv)
 {
-	item_t *item = create_item();
+	int height = 30;
+	int width =  40;
+	int start_y =  20;
+	int start_x =  100;
+
+	initscr();
+
+	WINDOW *win = newwin(height, width, start_y, start_x);
+
+	wattron(win, COLOR_PAIR(2));
+	refresh();
+	box(win, 0, 0);
+	mvwprintw(win, 1, 1, "TETRIS");
+	wrefresh(win);//refresh seulment la fenetre en parametre;
+	int c = getch();
+	endwin();
+	/*item_t *item = create_item();
 	char key[3] = {0, 0, 0};
 	int y = item[3].y;
 	int x = item[3].x;
@@ -67,6 +83,7 @@ int item_tetris(int argc, char **argv)
 	}
 	endwin();
 	return (0);
+	*/
 }
 
 int there_is_d(char **argv, int argc)
@@ -82,7 +99,11 @@ int main(int argc, char **argv)
 {
 	bool bol = false;
 
-	if (my_strncmp(argv[1], "--help", 5) == 0)
+	check_dir();
+	if (argc == 1) {
+		game_t game = game_create(argc, argv); //contient tout les info du jeu
+		return (item_tetris(argc, argv));
+	} if (my_strncmp(argv[1], "--help", 5) == 0)
 		return (help());
 	if (parsing(argv, argc) == true)
 		return (84);
@@ -91,4 +112,6 @@ int main(int argc, char **argv)
 		bol = true;
 	} if (bol == true)
 		  item_tetris(argc, argv);
+
+	return (0);
 }

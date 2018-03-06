@@ -9,6 +9,7 @@
 #define MY_H_
 
 #include <stdlib.h>
+#include <stdbool.h>
 #include "get_next_line.h"
 #include "macros.h"
 
@@ -20,6 +21,20 @@ typedef struct {
 	char *str;
 	char **item;
 }item_t;
+
+typedef struct {
+	int key_left;
+	int key_right;
+	int key_turn;
+	int key_drop;
+	int key_quit;
+	int key_pause;
+	bool next;
+	int level;
+	int size_height;
+	int size_width;
+	item_t *tetrominos;
+} game_t;
 
 char *concat(char *s1, char *s2);
 char **mem_alloc_2d_array(int nb_rows, int nb_cols);
