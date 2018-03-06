@@ -27,12 +27,12 @@ void without_next(char **argv, int argc)
 	for (int i = 1; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--without-next=", 7) == 0
 		|| my_strncmp(argv[i], "-w", 2) == 0)) {
-			printf("Next :  no\n");
+			printf("Next : no\n");
 			next = false;
 			break;
 		}
 	} if (next == true)
-		printf("Next :  Yes\n");
+		printf("Next : Yes\n");
 }
 
 char *command_size(char *size)
@@ -69,5 +69,5 @@ void mapsize(char **argv, int argc)
 		} else
 			command = "20*10";
 	}
-	printf("Size :  %s\n", command);
+	printf("Size : %s\n", command);
 }

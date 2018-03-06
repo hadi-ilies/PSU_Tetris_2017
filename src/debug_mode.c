@@ -69,7 +69,7 @@ void debug_mode_2(char **argv, int argc, item_t *item)
 	without_next(argv, argc);
 	level(argv, argc);
 	mapsize(argv, argc);
-	printf("Tetriminos :  %d\n", count_file());
+	printf("Tetriminos : %d\n", count_file());
 	sort_debug(item);
 	debug_mode_3(argv, item, sort_debug(item));
 }
@@ -84,10 +84,10 @@ void debug_mode_3(char **argv, item_t *item, int *sort)
 			if (item[j].filename[0] <= '9' && item[j].filename[0] >= '0') {
 				if (sort[i] == item[j].filename[0] - '0') {
 					if (item[j].x == -1)
-						printf("Tetriminos :  Name %s :  Error\n", D_N);
+						printf("Tetriminos : Name %s : Error\n", D_N);
 					else {
-						printf("Tetriminos :  Name %s :  Size %d*%d",  D_N, item[j].x, item[j].y);
-						printf(" :  Color %d :\n", item[j].color);
+						printf("Tetriminos : Name %s : Size %d*%d",  D_N, item[j].x, item[j].y);
+						printf(" : Color %d :\n", item[j].color);
 						for (int k = 0; k < item[j].y; k++)
 							printf("%s\n", item[j].item[k]);
 					}
@@ -95,10 +95,10 @@ void debug_mode_3(char **argv, item_t *item, int *sort)
 			}
 			else if (sort[i] == item[j].filename[0]) {
 				if (item[j].x == -1)
-						printf("Tetriminos :  Name %s :  Error\n", D_N);
+						printf("Tetriminos : Name %s : Error\n", D_N);
 					else {
-						printf("Tetriminos :  Name %s :  Size %d*%d",  D_N, item[j].x, item[j].y);
-						printf(" :  Color %d :\n", item[j].color);
+						printf("Tetriminos : Name %s : Size %d*%d",  D_N, item[j].x, item[j].y);
+						printf(" : Color %d :\n", item[j].color);
 						for (int k = 0; k < item[j].y; k++)
 							printf("%s\n", item[j].item[k]);
 					}

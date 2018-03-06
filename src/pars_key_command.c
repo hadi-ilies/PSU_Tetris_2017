@@ -47,9 +47,9 @@ void keydrop(char **argv, int argc)
 		} else
 			command = "^EOB";
 	} if (command[0] == ' ')
-		printf("Key Drop :  (space)\n");
+		printf("Key Drop : (space)\n");
 	else
-		printf("Key Drop :  %s\n", command);
+		printf("Key Drop : %s\n", command);
 }
 
 void keyquit(char **argv, int argc)
@@ -66,9 +66,9 @@ void keyquit(char **argv, int argc)
 		} else
 			command = "q";
 	} if (command[0] == ' ')
-		  printf("Key Quit :  (space)\n");
+		  printf("Key Quit : (space)\n");
 	else
-		printf("Key Quit :  %s\n", command);
+		printf("Key Quit : %s\n", command);
 }
 
 void keypause(char **argv, int argc)
@@ -85,7 +85,7 @@ void keypause(char **argv, int argc)
 		} else
 			command = " ";
 	} if (command[0] == ' ')
-		  printf("Key Pause :  (space)\n");
+		  printf("Key Pause : (space)\n");
 	else
-		printf("Key Pause :  %s\n", command);
+		printf("Key Pause : %s\n", command);
 }

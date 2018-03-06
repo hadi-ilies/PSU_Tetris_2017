@@ -46,9 +46,9 @@ void level(char **argv, int argc)
 	}
 	pars_level(command);
 	if (command[0] == ' ')
-		printf("Level :  (space)\n");
+		printf("Level : (space)\n");
 	else
-		printf("Level :  %s\n", command);
+		printf("Level : %s\n", command);
 }
 
 void keyleft(char **argv, int argc)
@@ -65,9 +65,9 @@ void keyleft(char **argv, int argc)
 		} else
 			command = "^EOD";
 	} if (command[0] == ' ')
-		printf("Key Left :  (space)\n");
+		printf("Key Left : (space)\n");
 	else
-		printf("Key Left :  %s\n", command);
+		printf("Key Left : %s\n", command);
 }
 
 void keyright(char **argv, int argc)
@@ -84,9 +84,9 @@ void keyright(char **argv, int argc)
 		} else
 			command = "^EOC";
 	} if (command[0] == ' ')
-		printf("Key Right :  (space)\n");
+		printf("Key Right : (space)\n");
 	else
-		printf("Key Right :  %s\n", command);
+		printf("Key Right : %s\n", command);
 }
 
 void keyturn(char **argv, int argc)
@@ -103,7 +103,7 @@ void keyturn(char **argv, int argc)
 		} else
 			command = "^EOA";
 	} if (command[0] == ' ')
-		printf("Key Turn :  (space)\n");
+		printf("Key Turn : (space)\n");
 	else
-		printf("Key Turn :  %s\n", command);
+		printf("Key Turn : %s\n", command);
 }
