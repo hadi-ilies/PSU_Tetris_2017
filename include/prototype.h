@@ -7,6 +7,16 @@
 
 #ifndef PROTOTYPE_H_
 #define PROTOTYPE_H_
+
+#include <time.h>
+
+void display_title(game_t *game);
+int display_next(game_t *game, int j);
+void create_border(game_t *game);
+void refresh_win(game_t *game);
+void initi_win(game_t *game);
+void set_color(WINDOW *win, int color);
+void check_error_color(void);
 int save_mapsize_height(char **argv, int argc);
 int save_mapsize_width(char **argv, int argc);
 int save_keyturn(char **argv, int argc);
@@ -43,4 +53,5 @@ item_t *create_item(void);
 int count_file(void);
 int take_filename(item_t *item);
 bool help(char **argv);
+int mode (int i);
 #endif

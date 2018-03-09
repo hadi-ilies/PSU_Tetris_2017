@@ -45,7 +45,7 @@ void keydrop(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "^EOB";
+			command = "^EOB";//tigetstr("kcud1");
 	} if (command[0] == ' ')
 		printf("Key Drop : (space)\n");
 	else

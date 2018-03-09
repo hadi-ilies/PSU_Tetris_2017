@@ -78,6 +78,7 @@ void debug_mode_2(char **argv, int argc, item_t *item)
 void debug_mode_3(char **argv, item_t *item, int *sort)
 {
 	char *str = NULL;
+	char buff[3] = {0};
 
 	for (int i = 0; i < count_file(); i++) {
 		for (int j = 0; j < count_file(); j++) {
@@ -106,8 +107,10 @@ void debug_mode_3(char **argv, item_t *item, int *sort)
 		}
 	}
 	printf("Press any key to start Tetris\n");
-	while (str == NULL)
-		str = get_next_line(0);
+	while (buff[0] == 0) {
+		read(0, buff, 10);
+		//printf("%d, %d, %d\n", buff[0], buff[1], buff[2]);
+	}
 }
 
 

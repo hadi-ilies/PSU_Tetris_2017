@@ -8,10 +8,18 @@
 #ifndef MY_H_
 #define MY_H_
 
+#include <ncurses.h>
 #include <stdlib.h>
 #include <stdbool.h>
 #include "get_next_line.h"
 #include "macros.h"
+
+typedef struct {
+	WINDOW *win;
+	WINDOW *score;
+	WINDOW *next_i;
+	WINDOW *title;
+}win_t;
 
 typedef struct {
 	int x;
@@ -33,6 +41,7 @@ typedef struct {
 	int level;
 	int size_height;
 	int size_width;
+	win_t win;
 	item_t *tetrominos;
 } game_t;
 

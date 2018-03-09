@@ -11,7 +11,12 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
+		$(SRCDIR)read_no_block.c \
+		$(SRCDIR)score.c \
+		$(SRCDIR)windows.c \
+		$(SRCDIR)next.c \
 		$(SRCDIR)check_dir.c \
+		$(SRCDIR)title.c \
 		$(SRCDIR)save_command_game2.c \
 		$(SRCDIR)save_command_game.c \
 		$(SRCDIR)game_create.c \
@@ -20,6 +25,7 @@ SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)merge_sort.c \
 		$(SRCDIR)pars_key_command3.c \
 		$(SRCDIR)parsing2.c \
+		$(SRCDIR)colors.c \
 		$(SRCDIR)parsing.c \
 		$(SRCDIR)insert_item.c \
 		$(SRCDIR)get_next_line.c \

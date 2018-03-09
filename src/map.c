@@ -47,8 +47,13 @@ int count_col_map(char *filename)
 	int fd = open(filename, O_RDONLY);
 	char *str = get_next_line(fd);
 	int i = 0;
+	int j = 0;
 
-	for (; str[i] != '\0'; i++);
+	for (; str != NULL; ) {
+		for (i = 0; str[i] != '\0'; i++)
+			i > j ? j = i : 0;
+		str = get_next_line(fd);
+	}
 	close(fd);
-	return (i);
+	return (++j);
 }

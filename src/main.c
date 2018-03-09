@@ -16,74 +16,60 @@
 #include <fcntl.h>
 #include "my.h"
 #include "prototype.h"
+#include <term.h>
 
-void init_display_screen(char **title, char **map, item_t *item)
+void display_windows(game_t *game, int j)
 {
-	initscr();
-	curs_set(0);
+	display_title(game);
+	game->next == true ? display_next(game, j) : 0;
+	display_score(game);
+	refresh_win(game);
+}
 
-	for (int i = 0; i < count_row_map("titre"); i++) {
-		mvprintw(LINES / 3.5 - count_row_map("titre") / 1 + i,
-			(COLS / 3.5) - (count_col_map("titre") / 1), title[i]);
-	} for (int i = 0; i < count_row_map("map"); i++) {
-		mvprintw(LINES / 2 - count_row_map("map") / 2 + i,
-			(COLS/2) - (count_col_map("map") / 2), map[i]);
-	} for (int i = 0; i < item[3].y; i++)
-		mvprintw(LINES / 2 - (item[3].y / 2) / 2 + i,
-			(COLS/2) - (item[3].x / 2), item[3].item[i]);
-	refresh();
+int game_loop(game_t *game)
+{
+	char key[5] = {0};
+	int x = game->tetrominos[0].x;
+	int j = 0;
+	int test = 0;
+
+	while (1) {
+		if (read(0, key, 1) == 1 && key[0] == 27) {
+			printw("%d, %d, %d", key[0], key[1], key[2]);
+			test++;
+		}
+		if (test == 10) {
+			mode(0);
+			break;
+		}
+		int y = game->tetrominos[j].y;
+		create_border(game);
+		set_color(game->win.win, game->tetrominos[j].color);
+		for (int i = 0; i < game->tetrominos[j].y; i++)
+			mvwprintw(game->win.win, y / 2 + i,
+				(game->tetrominos[j].x / 2), game->tetrominos[j].item[i]);
+		display_windows(game, j);
+		wattroff(game->win.win, COLOR_PAIR(1));//a verifier
+		refresh();
+	}
 }
 
 int item_tetris(int argc, char **argv)
 {
-	int height = 30;
-	int width =  40;
-	int start_y =  20;
-	int start_x =  100;
+	game_t game = game_create(argc, argv);
 
 	initscr();
-
-	WINDOW *win = newwin(height, width, start_y, start_x);
-
-	wattron(win, COLOR_PAIR(2));
-	refresh();
-	box(win, 0, 0);
-	mvwprintw(win, 1, 1, "TETRIS");
-	wrefresh(win);//refresh seulment la fenetre en parametre;
-	int c = getch();
-	endwin();
-	/*item_t *item = create_item();
-	char key[3] = {0, 0, 0};
-	int y = item[3].y;
-	int x = item[3].x;
-	int Y = y;
-	char **map = map_cr("map");
-	char **title = map_cr("titre");
-
-	//printf("row : %d|col : %d\n", count_row_map("map"), count_col_map("map"));
-	init_display_screen(title, map, item);
-	while (1) {
-		if (read(0, key, 3) == 1 && key[0] == 27)
-			break;
-		for (int i = 0; i < count_row_map("map"); i++) {
-			mvprintw(LINES / 2 - count_row_map("map") / 2 + i,
-				(COLS/2) - (count_col_map("map") / 2), map[i]);
-		} for (int i = 0; i < Y; i++)
-			  mvprintw(LINES / 2 - y / 2 + i,
-				(COLS/2) - (x / 2), item[3].item[i]);
-		for (int i = 0; i < count_row_map("titre"); i++) {
-		mvprintw(LINES / 3.5 - count_row_map("titre") / 1 + i,
-			 (COLS / 3.5) - (count_col_map("titre") / 1), title[i]);
-		usleep(10000);
-		}
-		y--;
-		//x++;
-		refresh();
-		clear();
-	}
+	//raw();//i dont know
+	keypad(stdscr, TRUE);//i dont know
+	noecho();//i dont know
+	curs_set(0);
+	game.size_height >= (LINES / 2) ? endwin() : 0;// its height
+	game.size_height >= (LINES / 2) ? exit(84) : 0;//
+	check_error_color();
+	initi_win(&game);
+	game_loop(&game);
 	endwin();
 	return (0);
-	*/
 }
 
 int there_is_d(char **argv, int argc)
@@ -95,22 +81,45 @@ int there_is_d(char **argv, int argc)
 	return (0);
 }
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
+	int ret;
+	int i;
+	char *s;
+	char *r;
 	bool bol = false;
-	game_t game;
+	char buff[10] = {0};
+	  int nb_lu = 0;
 
-	parsing(argv, argc);
+	  /*i = setupterm("xterm", 1, &ret);
+	printf("result setupterm : i=%d err=%d\n", i, ret);
+	//i = tigetnum("cols");
+	//printf("cols : %d\n", i);
+	s = tigetstr("smkx");
+	putp(s);
+	s = tigetstr("cup");
+	r = tparm(s, 3, 5);
+	printf("%s\n", r);
+	printf("TOTO\n\n");
+	mode(0);
+	nb_lu = read(0, buff, 10);
+	printf("nb_lu : %d, %d, %d, %d\n", nb_lu, buff[0], buff[1], buff[2]);
+	mode(1);*/
+	if (env[0] == NULL)
+		return (84);
+	parsing(argv, argc, env);
+	mode(1);
+	if (argc == 1)
+		return (item_tetris(argc, argv));
 	if (my_strncmp(argv[1], "--help", 5) == 0)
 		return (help(argv));
-	game = game_create(argc, argv); //contient tout les info du jeu
 	if (there_is_d(argv, argc) == 0)
 		return (item_tetris(argc, argv));
 	if (there_is_d(argv, argc) == 1) {
 		debug_mode(argv, argc);
 		bol = true;
 	} if (bol == true)
-		  item_tetris(argc, argv);
-
-	return (0);
+		return (item_tetris(argc, argv));
+	else
+		return (0);
 }
