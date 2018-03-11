@@ -10,8 +10,18 @@
 
 #include <time.h>
 
+char *save_keydrop(char **argv, int argc);
+char *save_keyturn(char **argv, int argc);
+void parsing(char **argv, int argc, char **env);
+void check_error_size2(char **argv, int *i);
+void check_error_size(char **argv, int argc);
+void there_is_error_size(game_t *game);
+void check_dir(void);
+char *save_keyright(char **argv, int argc);
+char *save_keyleft(char **argv, int argc);
+void display_score(game_t *game);
 void display_title(game_t *game);
-int display_next(game_t *game, int j);
+void display_next(game_t *game);
 void create_border(game_t *game);
 void refresh_win(game_t *game);
 void initi_win(game_t *game);
@@ -19,13 +29,11 @@ void set_color(WINDOW *win, int color);
 void check_error_color(void);
 int save_mapsize_height(char **argv, int argc);
 int save_mapsize_width(char **argv, int argc);
-int save_keyturn(char **argv, int argc);
-int save_keydrop(char **argv, int argc);
+char *save_keyturn(char **argv, int argc);
 bool save_without_next(char **argv, int argc);
 int save_keyquit(char **argv, int argc);
 int save_keypause(char **argv, int argc);
 int save_level(char **argv, int argc);
-int save_keyleft(char **argv, int argc);
 game_t game_create(int argc, char **argv);
 char *display_name(char *str);
 void debug_mode_2(char **argv, int argc, item_t *item);

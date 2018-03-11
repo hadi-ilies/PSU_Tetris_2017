@@ -20,44 +20,44 @@
 #include <fcntl.h>
 #include "prototype.h"
 
-int save_keyturn(char **argv, int argc)
+char *save_keyturn(char **argv, int argc)
 {
-	int key_turn = 0;
+	char *key_turn = NULL;
 	char *command;
 
 	for (int i = 0; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--key-turn=", 11) == 0)) {
 			command = command_l(argv[i]);
-			key_turn = 0;
+			key_turn = NULL;
 			break;
 		} else if (my_strncmp(argv[i], "-t", 2) == 0) {
 			command = argv[i + 1];
-			key_turn = 0;
+			key_turn = NULL;
 			break;
 		} else
-			key_turn  = KEY_UP;
-	} if (key_turn != KEY_UP)
+			key_turn = tigetstr("kcuu1");
+	} if (key_turn == NULL)
 		key_turn = command[0];
 	return (key_turn);
 }
 
-int save_keydrop(char **argv, int argc)
+char *save_keydrop(char **argv, int argc)
 {
-	int key_drop = 0;
+	char *key_drop = NULL;
 	char *command;
 
 	for (int i = 0; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--key-drop=", 11) == 0)) {
 			command = command_l(argv[i]);
-			key_drop = 0;
+			key_drop = NULL;
 			break;
 		} else if (my_strncmp(argv[i], "-d", 2) == 0) {
 			command = argv[i + 1];
-			key_drop = 0;
+			key_drop = NULL;
 			break;
 		} else
-			key_drop  = KEY_DOWN;
-	} if (key_drop != KEY_DOWN)
+			key_drop = tigetstr("kcud1");
+	} if (key_drop == NULL)
 		key_drop = command[0];
 	return (key_drop);
 }

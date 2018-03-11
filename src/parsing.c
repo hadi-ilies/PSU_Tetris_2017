@@ -71,7 +71,7 @@ void parsing(char **argv, int argc, char **env)
 		i == -1 ? my_printf(1, "The terminal doesn't exist :(\n") : 0;
 		i == -1 ? exit (84) : 0;
 	}
-	mode(2);
+	mode(1);
 	there_is_error_size(&game);
 	for (int i = 1; i < argc; i++)
 		parse_arg(argv, &i);

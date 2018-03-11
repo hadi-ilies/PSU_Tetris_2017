@@ -46,9 +46,9 @@ void level(char **argv, int argc)
 	}
 	pars_level(command);
 	if (command[0] == ' ')
-		printf("Level : (space)\n");
+		my_printf(1, "Level : (space)\n");
 	else
-		printf("Level : %s\n", command);
+		my_printf(1, "Level : %s\n", command);
 }
 
 void keyleft(char **argv, int argc)
@@ -63,11 +63,13 @@ void keyleft(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "^EOD";
-	} if (command[0] == ' ')
-		printf("Key Left : (space)\n");
+			command = tigetstr("kcub1");//"^EOD";
+	} if (command[0] == '\e')
+		my_printf(1, "Key Left : ^E%s\n", command + 1);
+	else if (command[0] == ' ')
+		my_printf(1, "Key Left : (space)\n");
 	else
-		printf("Key Left : %s\n", command);
+		my_printf(1, "Key Left : %s\n", command);
 }
 
 void keyright(char **argv, int argc)
@@ -82,11 +84,13 @@ void keyright(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "^EOC";
-	} if (command[0] == ' ')
-		printf("Key Right : (space)\n");
+			command = tigetstr("kcuf1");//"^EOC";
+	} if (command[0] == '\e')
+		  my_printf(1, "Key Right : ^E%s\n", command + 1);
+	else if (command[0] == ' ')
+		my_printf(1, "Key Right : (space)\n");
 	else
-		printf("Key Right : %s\n", command);
+		my_printf(1, "Key Right : %s\n", command);
 }
 
 void keyturn(char **argv, int argc)
@@ -101,9 +105,11 @@ void keyturn(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = "^EOA";
-	} if (command[0] == ' ')
-		printf("Key Turn : (space)\n");
+			command = tigetstr("kcuu1");//"^EOA";
+	} if (command[0] == '\e')
+		  my_printf(1, "Key Turn : ^E%s\n", command + 1);
+	else if (command[0] == ' ')
+		my_printf(1, "Key Turn : (space)\n");
 	else
-		printf("Key Turn : %s\n", command);
+		my_printf(1, "Key Turn : %s\n", command);
 }

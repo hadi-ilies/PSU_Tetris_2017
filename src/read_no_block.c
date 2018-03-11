@@ -22,36 +22,23 @@
 //mode non canonique
 int mode(int i)
 {
-	static struct termios	oldT;
-	static struct termios	newT;
+	struct termios	oldt;
+	struct termios newt;
+	char c[10];
 
 	if (i == 1) {
-		ioctl(0, TCGETS, &oldT);
-		ioctl(0, TCGETS, &newT);
-		newT.c_lflag &= ~ECHO;
-		newT.c_lflag &= ~ICANON;
-		ioctl(0, TCSETS, &newT);
-	} else if (i == 2) {
-		ioctl(0, TCGETS, &newT);
-		newT.c_lflag &= ~ECHO;
-		newT.c_lflag &= ~ICANON;
-		newT.c_cc[VMIN] = 0;
-		newT.c_cc[VTIME] = 0;
-		ioctl(0, TCSETS, &newT);
-	} else if (i == 0)
-		ioctl(0, TCSETS, &oldT);
-/*
-	if (i == 0) {
-		ioctl(0, TCGETS, &oldt);
-		ioctl(0, TCGETS, &newt) == -1 ? exit(84) : 0;
-		newt.c_lflag &= ~ECHO;
-		newt.c_lflag &= ~ICANON;
-		ioctl(0, TCSETS, &newt);
-		//tcgetattr(0, &newt);
-		newt.c_cc[VMIN] = 1;
-		newt.c_cc[VTIME] = 0;
-		return (0);
-	} if (i == 1)
-		  ioctl(0, TCSETS, &oldt) == -1 ? exit (84) : 0;
-	return (0);*/
+	ioctl(0, TCGETS, &newt);
+	newt.c_lflag &= ~ICANON;
+	newt.c_lflag &= ~ECHO;
+	newt.c_cc[VMIN] = 0;
+	newt.c_cc[VTIME] = 2;
+	ioctl(0, TCSETS, &newt);
+	}
+	//while (1) {
+	//      read(0, c, 1);
+	//      printf("xd\n");
+	//}
+	if (i == 0)
+		ioctl(0, TCSETS, &oldt);
+	return (0);
 }

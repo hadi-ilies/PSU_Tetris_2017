@@ -58,6 +58,8 @@ void init_item(item_t *item)
 		fd = open(str, O_RDONLY);
 		fd == -1 ? exit(84) : 0;
 		item[i].str = get_next_line(fd);
+		item[i].coord_x = 0;
+		item[i].coord_y = 0;
 		check_file(item, &i) == false ? item[i].x = -1 : (purge_str(item, &i, fd));//faire gestionfile
 	}
 }

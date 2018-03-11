@@ -15,6 +15,12 @@
 #include "macros.h"
 
 typedef struct {
+	int x;
+	int y;
+	int nb_tet;
+}move_t;
+
+typedef struct {
 	WINDOW *win;
 	WINDOW *score;
 	WINDOW *next_i;
@@ -22,8 +28,10 @@ typedef struct {
 }win_t;
 
 typedef struct {
-	int x;
-	int y;
+	int coord_x;//
+	int coord_y;//
+	int x;//size_x
+	int y;//size_y
 	int color;
 	char *filename;
 	char *str;
@@ -31,20 +39,28 @@ typedef struct {
 }item_t;
 
 typedef struct {
-	int key_left;
-	int key_right;
-	int key_turn;
-	int key_drop;
+	char *ke_left;
+	char *ke_right;
+	char *key_turn;
+	char *key_drop;
 	int key_quit;
 	int key_pause;
 	bool next;
 	int level;
 	int size_height;
 	int size_width;
+} keyb_t;
+
+typedef struct {
+	keyb_t key;
 	win_t win;
+	int rand_next;
+	move_t move;
 	item_t *tetrominos;
 } game_t;
 
+void move_tetro_right(game_t *game, item_t *cp_tetr);
+void move_tetro_left(game_t *game, item_t *cp_tetr);
 char *concat(char *s1, char *s2);
 char **mem_alloc_2d_array(int nb_rows, int nb_cols);
 int my_atoi(char *str);

@@ -77,44 +77,44 @@ int save_level(char **argv, int argc)
 	return (level);
 }
 
-int save_keyleft(char **argv, int argc)
+char *save_keyleft(char **argv, int argc)
 {
-	int key_left = 1;
+	char *key_left = NULL;
 	char *command;
 
 	for (int i = 0; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--key-left=", 11) == 0)) {
 			command = command_l(argv[i]);
-			key_left = 0;
+			key_left = NULL;
 			break;
 		} else if (my_strncmp(argv[i], "-l", 2) == 0) {
 			command = argv[i + 1];
-			key_left = 0;
+			key_left = NULL;
 			break;
 		} else
-			key_left  = KEY_LEFT;
-	} if (key_left != KEY_LEFT)
-		key_left = command[0];
+			key_left = tigetstr("kcub1");
+	} if (key_left == NULL)
+		key_left = command;
 	return (key_left);
 }
 
-int save_keyright(char **argv, int argc)
+char *save_keyright(char **argv, int argc)
 {
-	int key_right = 0;
+	char *key_right = NULL;
 	char *command;
 
 	for (int i = 0; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--key-right=", 11) == 0)) {
 			command = command_l(argv[i]);
-			key_right = 0;
+			key_right = NULL;
 			break;
 		} else if (my_strncmp(argv[i], "-r", 2) == 0) {
 			command = argv[i + 1];
-			key_right = 0;
+			key_right = NULL;
 			break;
 		} else
-			key_right  = KEY_RIGHT;
-	} if (key_right != KEY_RIGHT)
+			key_right = tigetstr("kcuf1");
+	} if (key_right == NULL)
 		key_right = command[0];
 	return (key_right);
 }

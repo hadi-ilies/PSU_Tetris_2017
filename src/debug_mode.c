@@ -77,7 +77,6 @@ void debug_mode_2(char **argv, int argc, item_t *item)
 //je vais le remettre a la norme si ca passes a la mouli
 void debug_mode_3(char **argv, item_t *item, int *sort)
 {
-	char *str = NULL;
 	char buff[3] = {0};
 
 	for (int i = 0; i < count_file(); i++) {
