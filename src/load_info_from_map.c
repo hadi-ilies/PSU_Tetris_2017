@@ -16,8 +16,8 @@
 #include <ncurses.h>
 #include <stdbool.h>
 #include <string.h>
-#include "my.h"
 #include <fcntl.h>
+#include "my.h"
 #include "prototype.h"
 
 void purge_str(item_t *item, int *i, int fd)
@@ -58,8 +58,8 @@ void init_item(item_t *item)
 		fd = open(str, O_RDONLY);
 		fd == -1 ? exit(84) : 0;
 		item[i].str = get_next_line(fd);
-		item[i].coord_x = 0;
-		item[i].coord_y = 0;
+		item[i].coord_x = 3;
+		item[i].coord_y = 3;
 		check_file(item, &i) == false ? item[i].x = -1 : (purge_str(item, &i, fd));//faire gestionfile
 	}
 }

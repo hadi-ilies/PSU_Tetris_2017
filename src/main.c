@@ -5,19 +5,12 @@
 ** main.c
 */
 
-#include <unistd.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <ncurses.h>
-#include <stdbool.h>
-#include <string.h>
-#include <fcntl.h>
-#include "my.h"
 #include <time.h>
+#include <unistd.h>
+#include "my.h"
 #include "prototype.h"
-#include <term.h>
+#include "map.h"
 
 void display_windows(game_t *game)
 {
@@ -36,71 +29,70 @@ void command(char key[10], game_t *game, item_t *cp_tetr)
 	if (my_strncmp(key, game->key.ke_right, 3) == 0) {//mettre key.key_right a la place
 		move_tetro_right(game, cp_tetr);
 	}
-
 }
 
-int move_tetro_auto(game_t *game, int i, item_t *cp_tetr) // a la normes!!!
+void insert_base_ter(item_t *cp_tetr, map_t *game_map, game_t *game)
 {
-	cp_tetr[game->move.nb_tet].coord_y++;//augmenter lincrementation selon le niveau
-	werase(game->win.win);
-	if (cp_tetr[game->move.nb_tet].coord_y >= game->key.size_height - cp_tetr[game->move.nb_tet].y - 1) {
-		game->tetrominos[game->move.nb_tet].coord_y = cp_tetr[game->move.nb_tet].coord_y;
-		game->tetrominos[game->move.nb_tet].coord_x = cp_tetr[game->move.nb_tet].coord_x;
-		cp_tetr[game->move.nb_tet].coord_y = 0;
-		cp_tetr[game->move.nb_tet].coord_x = 0;
-		//game->move.nb_tet = game->rand_next;
-		//cp_tetr = create_item();
-		return (game->move.nb_tet);
+	for (int i = 0; i < cp_tetr[game->move.nb_tet].y; i++)
+		for (int j = 0; game->tetrominos[game->move.nb_tet].item[i][j] != '\0'; j++) {
+			game_map->tab[j + cp_tetr[game->move.nb_tet].coord_x][i + cp_tetr[game->move.nb_tet].coord_y].type = game->tetrominos[game->move.nb_tet].item[i][j];
+			game_map->tab[j + cp_tetr[game->move.nb_tet].coord_x][i + cp_tetr[game->move.nb_tet].coord_y].color = game->tetrominos[game->move.nb_tet].color;
+		}
+}
+
+int tetro_colision(game_t *game, item_t *cp_tetr, map_t *game_map)
+{
+	for (int i = 0; i < cp_tetr[game->move.nb_tet].y; i++)
+		for (int j = 0; game->tetrominos[game->move.nb_tet].item[i][j] != '\0'; j++)
+			if (game_map->tab[j + cp_tetr[game->move.nb_tet].coord_x][i + cp_tetr[game->move.nb_tet].coord_y + 1].type == '*')
+				return (1);
+	return (0);
+}
+
+int check_line(game_t *game, map_t *game_map)
+{
+	int line_filled = 0;
+
+	for (int i = 0; i < game_map->nb_case_x; i++) {
+		for (int j = 0; j < game_map->nb_case_y; j++) {
+			game_map->tab[i][j].type == '*' ? line_filled++ : (line_filled = 0);
+			//game_map->tab[i][j].type == '*' ? printw("|%d|", line_filled) : 0;
+		}
+		printw("|%d|", line_filled);
+		if (line_filled == 8) {
+			for (int k = i; k < game_map->nb_case_x; k++) {
+				for (int l = 0; l < game_map->nb_case_y; l++) {
+					printw("|%c|", game_map->tab[k][l].type);
+					mvwprintw(game->win.win, l, k, " ");
+					game_map->tab[k][l].type = ' ';
+				}
+			}
+		}
 	}
-	return (-1);
-}
-
-void move_tetro_right(game_t *game, item_t *cp_tetr)
-{
-	cp_tetr[game->move.nb_tet].coord_x++;
-	werase(game->win.win);
-	if (cp_tetr[game->move.nb_tet].coord_x >= game->key.size_width - cp_tetr[game->move.nb_tet].x) {
-	cp_tetr[game->move.nb_tet].coord_x =  game->key.size_width - cp_tetr[game->move.nb_tet].x - 1;
-	}
-}
-
-void move_tetro_left(game_t *game, item_t *cp_tetr)
-{
-	cp_tetr[game->move.nb_tet].coord_x--;
-	werase(game->win.win);
-	if (cp_tetr[game->move.nb_tet].coord_x <= 1) {
-		cp_tetr[game->move.nb_tet].coord_x = 1;
-	}
-}
-
-void display_tetro_base(game_t *game, int id_tetri)
-{
-	for (int i = 0; i < game->tetrominos[id_tetri].y; i++)
-		mvwprintw(game->win.win, game->tetrominos[id_tetri].coord_y + i, game->tetrominos[id_tetri].coord_x, game->tetrominos[id_tetri].item[i]);
 }
 
 int game_loop(game_t *game)
 {
-	int i = 0;
 	item_t *cp_tetr = create_item();
-	int id_tetri = 0;
+	map_t game_map = map_create(game->key.size_width, game->key.size_height);//stock size map in var
 
 	mode(1);
 	while (1) {
-		char key[10] = {0};
+		char key[10] = {'\0'};
 
+		pause_key(key, game);
 		if (read(0, key, 3) == 1 && key[0] == game->key.key_quit) {
 			mode(0);
 			break;
 		}
 		create_border(game);
 		set_color(game->win.win, game->tetrominos[game->move.nb_tet].color);
-		for (i = 0; i < game->tetrominos[game->move.nb_tet].y; i++)
-			mvwprintw(game->win.win, cp_tetr[game->move.nb_tet].coord_y + i, cp_tetr[game->move.nb_tet].coord_x, game->tetrominos[game->move.nb_tet].item[i]);
+		display_tetro(game, cp_tetr);
 		display_windows(game);
 		command(key, game, cp_tetr);
-		id_tetri = move_tetro_auto(game, i, cp_tetr) != -1 ? game->move.nb_tet = game->rand_next : 0;// a debuguer
-		display_tetro_base(game, id_tetri);
+		move_tetro_auto(game, cp_tetr, &game_map) != -1 ? game->move.nb_tet = game->rand_next : 0;
+		display_tetro_base(game, &game_map);
+		//check_line(game, &game_map);
 		wattroff(game->win.win, COLOR_PAIR(1));
 		refresh();
 	}
@@ -152,7 +144,7 @@ int main(int argc, char **argv, char **env)
 		debug_mode(argv, argc);
 		bol = true;
 	} if (bol == true)
-		return (item_tetris(argc, argv));
+		  return (item_tetris(argc, argv));
 	else
 		return (0);
 }

@@ -17,7 +17,7 @@
 #include "my.h"
 #include "prototype.h"
 
-int create_next()
+int create_next(void)
 {
 	int next = rand() % (count_file() - 2);
 

@@ -18,6 +18,7 @@
 #include <string.h>
 #include "my.h"
 #include <fcntl.h>
+#include "macros.h"
 #include "prototype.h"
 
 void debug_mode(char **argv, int argc)

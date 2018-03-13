@@ -115,6 +115,6 @@ char *save_keyright(char **argv, int argc)
 		} else
 			key_right = tigetstr("kcuf1");
 	} if (key_right == NULL)
-		key_right = command[0];
+		key_right = command;
 	return (key_right);
 }

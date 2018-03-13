@@ -5,6 +5,7 @@
 ** my_malloc.c
 */
 
+#include <stdlib.h>
 #include "my.h"
 
 void *my_malloc(size_t size)

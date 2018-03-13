@@ -5,17 +5,9 @@
 ** score
 */
 
-#include <unistd.h>
-#include <stdlib.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <ncurses.h>
-#include <stdbool.h>
-#include <string.h>
-#include <fcntl.h>
+#include <time.h>
 #include "my.h"
-#include "prototype.h"
+
 
 void display_score(game_t *game)
 {

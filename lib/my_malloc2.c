@@ -5,6 +5,7 @@
 ** my_malloc2.c
 */
 
+#include <stdlib.h>
 #include "my.h"
 
 void **my_malloc2(size_t nb_case_x, size_t nb_case_y)

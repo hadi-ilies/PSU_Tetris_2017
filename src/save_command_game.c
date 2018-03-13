@@ -37,7 +37,7 @@ char *save_keyturn(char **argv, int argc)
 		} else
 			key_turn = tigetstr("kcuu1");
 	} if (key_turn == NULL)
-		key_turn = command[0];
+		key_turn = command;
 	return (key_turn);
 }
 
@@ -58,7 +58,7 @@ char *save_keydrop(char **argv, int argc)
 		} else
 			key_drop = tigetstr("kcud1");
 	} if (key_drop == NULL)
-		key_drop = command[0];
+		key_drop = command;
 	return (key_drop);
 }
 

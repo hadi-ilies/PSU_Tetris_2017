@@ -24,7 +24,6 @@ int mode(int i)
 {
 	struct termios	oldt;
 	struct termios newt;
-	char c[10];
 
 	if (i == 1) {
 	ioctl(0, TCGETS, &newt);
@@ -34,10 +33,6 @@ int mode(int i)
 	newt.c_cc[VTIME] = 2;
 	ioctl(0, TCSETS, &newt);
 	}
-	//while (1) {
-	//      read(0, c, 1);
-	//      printf("xd\n");
-	//}
 	if (i == 0)
 		ioctl(0, TCSETS, &oldt);
 	return (0);

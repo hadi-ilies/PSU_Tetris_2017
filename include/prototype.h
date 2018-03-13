@@ -5,11 +5,17 @@
 ** prototype.h
 */
 
-#ifndef PROTOTYPE_H_
-#define PROTOTYPE_H_
+#pragma once
 
-#include <time.h>
+#include "my.h"
+#include "map.h"
 
+void display_tetro_base(game_t *game, map_t *game_map);
+void display_tetro(game_t *game, item_t *cp_tetr);
+int move_tetro_auto(game_t *game, item_t *cp_tetr, map_t *game_map);
+void move_tetro_right(game_t *game, item_t *cp_tetr);
+void move_tetro_left(game_t *game, item_t *cp_tetr);
+int create_next(void);
 char *save_keydrop(char **argv, int argc);
 char *save_keyturn(char **argv, int argc);
 void parsing(char **argv, int argc, char **env);
@@ -62,4 +68,3 @@ int count_file(void);
 int take_filename(item_t *item);
 bool help(char **argv);
 int mode (int i);
-#endif

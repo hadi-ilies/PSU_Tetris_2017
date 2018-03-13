@@ -8,26 +8,32 @@
 NAME	=	tetris
 
 SRCDIR	=	src/
+
+PARSING_DIR	=	$(SRCDIR)parsing/
+
 LIBDIR	=	lib/
 
 SRC	=	$(SRCDIR)main.c \
+		$(PARSING_DIR)parsing.c \
+		$(PARSING_DIR)parsing2.c \
+		$(PARSING_DIR)pars_key_command.c \
+		$(PARSING_DIR)pars_key_command2.c \
+		$(PARSING_DIR)pars_key_command3.c \
 		$(SRCDIR)read_no_block.c \
 		$(SRCDIR)score.c \
+		$(SRCDIR)pause.c \
+		$(SRCDIR)display_tetrominos.c \
+		$(SRCDIR)move_tetro.c \
 		$(SRCDIR)windows.c \
 		$(SRCDIR)next.c \
 		$(SRCDIR)check_dir.c \
+		$(SRCDIR)map_create.c \
 		$(SRCDIR)title.c \
 		$(SRCDIR)save_command_game2.c \
 		$(SRCDIR)save_command_game.c \
 		$(SRCDIR)game_create.c \
-		$(SRCDIR)pars_key_command.c \
-		$(SRCDIR)pars_key_command2.c \
 		$(SRCDIR)merge_sort.c \
-		$(SRCDIR)pars_key_command3.c \
-		$(SRCDIR)parsing2.c \
 		$(SRCDIR)colors.c \
-		$(SRCDIR)parsing.c \
-		$(SRCDIR)insert_item.c \
 		$(SRCDIR)get_next_line.c \
 		$(SRCDIR)help.c \
 		$(SRCDIR)debug_mode.c \
