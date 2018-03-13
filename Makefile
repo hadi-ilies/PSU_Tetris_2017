@@ -8,17 +8,20 @@
 NAME	=	tetris
 
 SRCDIR	=	src/
-
-PARSING_DIR	=	$(SRCDIR)parsing/
-
 LIBDIR	=	lib/
+MAPDIR	=	$(SRCDIR)map/
+PARSDIR	=	$(SRCDIR)parsing/
 
 SRC	=	$(SRCDIR)main.c \
-		$(PARSING_DIR)parsing.c \
-		$(PARSING_DIR)parsing2.c \
-		$(PARSING_DIR)pars_key_command.c \
-		$(PARSING_DIR)pars_key_command2.c \
-		$(PARSING_DIR)pars_key_command3.c \
+		$(PARSDIR)parsing.c \
+		$(PARSDIR)parsing2.c \
+		$(PARSDIR)pars_key_command.c \
+		$(PARSDIR)pars_key_command2.c \
+		$(PARSDIR)pars_key_command3.c \
+		$(MAPDIR)map_create.c \
+		$(MAPDIR)map_copy.c \
+		$(MAPDIR)map_destroy.c \
+		$(MAPDIR)map_aff.c \
 		$(SRCDIR)read_no_block.c \
 		$(SRCDIR)score.c \
 		$(SRCDIR)pause.c \
@@ -27,7 +30,6 @@ SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)windows.c \
 		$(SRCDIR)next.c \
 		$(SRCDIR)check_dir.c \
-		$(SRCDIR)map_create.c \
 		$(SRCDIR)title.c \
 		$(SRCDIR)save_command_game2.c \
 		$(SRCDIR)save_command_game.c \

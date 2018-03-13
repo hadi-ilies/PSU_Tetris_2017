@@ -5,6 +5,7 @@
 ** map_destroy.c
 */
 
+#include <stdlib.h>
 #include "map.h"
 
 void map_destroy(map_t *map)
