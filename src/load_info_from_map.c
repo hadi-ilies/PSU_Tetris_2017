@@ -14,8 +14,8 @@
 #include <pwd.h>
 #include <grp.h>
 #include <ncurses.h>
+#include <sys/stat.h>
 #include <stdbool.h>
-#include <string.h>
 #include <fcntl.h>
 #include "my.h"
 #include "prototype.h"
@@ -66,10 +66,10 @@ void init_item(item_t *item)
 
 item_t *create_item(void)
 {
-	item_t *item = malloc(sizeof(item_t) * (count_file() + 1));
+	item_t *item = my_malloc(sizeof(item_t) * (count_file() + 1));
 
 	for (int i = 0; i < count_file(); i++)
-		item[i].filename = malloc(sizeof(char) * 30);
+		item[i].filename = my_malloc(sizeof(char) * 30);
 	take_filename(item);
 	init_item(item);
 	return (item);
@@ -84,11 +84,29 @@ int count_file(void)
 	dir = opendir("tetriminos");
 	if (dir == NULL)
 		exit(84);
-	while ((d = readdir(dir)))
+	while ((d = readdir(dir))) {
+		(d == NULL) ? exit(84) : 0;
 		if (d->d_name[0] != '.')
 			nb_file++;
+	}
 	closedir(dir);
 	return (nb_file);
+}
+
+int mystrlen_p(char *str)
+{
+	int i = 0;
+
+	for (i = 0; str[i] != '.'; i++);
+	return (i);
+}
+
+int is_regular_file(const char *path)
+{
+    struct stat path_stat;
+
+    stat(path, &path_stat);
+    return S_ISREG(path_stat.st_mode);
 }
 
 int take_filename(item_t *item)
@@ -102,7 +120,8 @@ int take_filename(item_t *item)
 	if (dir == NULL)
 		exit(84);
 	while ((d = readdir(dir))) {
-		if (d->d_name[0] != '.') {
+		d == NULL ? exit (84) : 0;
+		if (is_regular_file(concat("tetriminos/", d->d_name))) { //test valgrind + faut .tetri
 			for (j = 0; d->d_name[j] > ' '; j++)
 				item[i].filename[j] = d->d_name[j];
 			item[i].filename[j] = '\0';

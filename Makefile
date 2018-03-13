@@ -13,6 +13,7 @@ MAPDIR	=	$(SRCDIR)map/
 PARSDIR	=	$(SRCDIR)parsing/
 
 SRC	=	$(SRCDIR)main.c \
+		$(SRCDIR)exit.c \
 		$(PARSDIR)parsing.c \
 		$(PARSDIR)parsing2.c \
 		$(PARSDIR)pars_key_command.c \
@@ -24,6 +25,7 @@ SRC	=	$(SRCDIR)main.c \
 		$(MAPDIR)map_aff.c \
 		$(SRCDIR)read_no_block.c \
 		$(SRCDIR)score.c \
+		$(SRCDIR)game_over.c \
 		$(SRCDIR)pause.c \
 		$(SRCDIR)display_tetrominos.c \
 		$(SRCDIR)move_tetro.c \

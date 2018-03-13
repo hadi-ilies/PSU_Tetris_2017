@@ -21,6 +21,7 @@ typedef struct {
 	WINDOW *score;
 	WINDOW *next_i;
 	WINDOW *title;
+	WINDOW *game_over;
 } win_t;
 
 typedef struct {
@@ -51,13 +52,14 @@ typedef struct {
 	keyb_t key;
 	win_t win;
 	int rand_next;
+	int score;
+	int time;
 	move_t move;
 	item_t *tetrominos;
 } game_t;
 
+char *inttostr(int nb);
 char **my_str_to_word_array(char *str);
-void move_tetro_right(game_t *game, item_t *cp_tetr);
-void move_tetro_left(game_t *game, item_t *cp_tetr);
 void *my_malloc(size_t size);
 char **mem_alloc_2d_array(int nb_rows, int nb_cols);
 char *concat(char *s1, char *s2);

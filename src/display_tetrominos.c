@@ -17,7 +17,7 @@ void display_tetro_base(game_t *game, map_t *game_map)
 	for (int i = 0; i < game_map->nb_case_x; i++) {
 		for (int j = 0; j < game_map->nb_case_y; j++) {
 			set_color(game->win.win, game_map->tab[i][j].color);
-			mvwprintw(game->win.win, j, i, "%c", game_map->tab[i][j]);
+			game_map->tab[i][j].type == '*' ? mvwprintw(game->win.win, j + 1, i + 1, "%c", game_map->tab[i][j]) : 0;
 			wattroff(game->win.win, COLOR_PAIR(1));
 		}
 	}
@@ -26,5 +26,6 @@ void display_tetro_base(game_t *game, map_t *game_map)
 void display_tetro(game_t *game, item_t *cp_tetr)
 {
 	for (int i = 0; i < game->tetrominos[game->move.nb_tet].y; i++)
-		mvwprintw(game->win.win, cp_tetr[game->move.nb_tet].coord_y + i, cp_tetr[game->move.nb_tet].coord_x, game->tetrominos[game->move.nb_tet].item[i]);
+		for (int j = 0; j < game->tetrominos[game->move.nb_tet].x; j++)
+			game->tetrominos[game->move.nb_tet].item[i][j] == '*' ? mvwprintw(game->win.win, cp_tetr[game->move.nb_tet].coord_y + i + 1, cp_tetr[game->move.nb_tet].coord_x + j + 1, "%c", game->tetrominos[game->move.nb_tet].item[i][j]) : 0;
 }

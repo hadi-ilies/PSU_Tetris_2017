@@ -12,6 +12,7 @@ SRC	=	my_strlen.c \
 		my_malloc.c \
 		my_malloc2.c \
 		strncmp.c \
+		inttostr.c \
 		my_atoi.c \
 		my_str_to_word_array.c \
 		concat.c \

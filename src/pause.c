@@ -14,7 +14,7 @@
 
 void my_sleep_pause(char key[10], game_t *game)
 {
-	for (unsigned int i = 0; i < 100000000; i++)
+	while (1)
 		if (read(0, key, 3) == 1 && key[0] == game->key.key_pause) {
 			clear();
 			break;
@@ -27,6 +27,7 @@ void display_pause_grafiti(void)
 
 	clear();
 	for (int i = 0; i < count_row_map("pause"); i++) {
+		set_color_without_win(i);
 		mvprintw(LINES / 2 - count_row_map("pause") / 2 + i,
 			COLS / 2 - (count_col_map("pause") / 2), pause_m[i]);
 		refresh();

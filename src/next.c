@@ -20,7 +20,6 @@
 int create_next(void)
 {
 	int next = rand() % (count_file() - 2);
-
 	return (next);
 }
 

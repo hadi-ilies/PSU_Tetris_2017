@@ -10,11 +10,12 @@
 #include "my.h"
 #include "map.h"
 
+void set_color_without_win(int color);
 void display_tetro_base(game_t *game, map_t *game_map);
 void display_tetro(game_t *game, item_t *cp_tetr);
 int move_tetro_auto(game_t *game, item_t *cp_tetr, map_t *game_map);
-void move_tetro_right(game_t *game, item_t *cp_tetr);
-void move_tetro_left(game_t *game, item_t *cp_tetr);
+void move_tetro_right(game_t *game, item_t *cp_tetr, map_t *game_map);
+void move_tetro_left(game_t *game, item_t *cp_tetr, map_t *game_map);
 int create_next(void);
 char *save_keydrop(char **argv, int argc);
 char *save_keyturn(char **argv, int argc);

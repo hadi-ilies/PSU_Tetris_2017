@@ -35,7 +35,7 @@ void refresh_win(game_t *game)
 
 void initi_win(game_t *game)
 {
-	game->win.win = newwin(game->key.size_height, game->key.size_width, (LINES / 2) - game->key.size_height, (COLS / 2));
+	game->win.win = newwin(game->key.size_height + 2, game->key.size_width + 2, (LINES / 2) - game->key.size_height, (COLS / 2));
 	game->win.score = newwin(20, 10 + (COLS / 4), LINES/2, 0);
 	game->key.next == true ? game->win.next_i = newwin(10, 20, 0, COLS - game->key.size_height) : 0;
 	game->win.title = newwin(15, 50, 0, 0);//

@@ -52,10 +52,6 @@ int *sort_debug(item_t *item)
 			sort[i] = item[i].filename[0];
 	}
 	sort_b(sort, i);
-	//printf("start here\n", sort[i]);
-	//for (i = 0; i < count_file(); i++)
-	//	printf("%d | ", sort[i]);
-	//exit(0);
 	return (sort);
 }
 
@@ -70,7 +66,7 @@ void debug_mode_2(char **argv, int argc, item_t *item)
 	without_next(argv, argc);
 	level(argv, argc);
 	mapsize(argv, argc);
-	printf("Tetriminos : %d\n", count_file());
+	my_printf(1, "Tetriminos : %d\n", count_file());
 	sort_debug(item);
 	debug_mode_3(argv, item, sort_debug(item));
 }
