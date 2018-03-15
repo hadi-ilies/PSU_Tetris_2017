@@ -4,6 +4,7 @@
 ** File description:
 ** map
 */
+
 #include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -18,7 +19,8 @@
 
 char **map_cr(char *filename)
 {
-	char **map = mem_alloc_2d_array(count_row_map(filename), count_col_map(filename));
+	char **map = mem_alloc_2d_array(count_row_map(filename),
+					count_col_map(filename));
 	int fd = open(filename, O_RDONLY);
 	char *str = get_next_line(fd);
 

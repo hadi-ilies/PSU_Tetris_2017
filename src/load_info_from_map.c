@@ -60,7 +60,8 @@ void init_item(item_t *item)
 		item[i].str = get_next_line(fd);
 		item[i].coord_x = 3;
 		item[i].coord_y = 3;
-		check_file(item, &i) == false ? item[i].x = -1 : (purge_str(item, &i, fd));//faire gestionfile
+		check_file(item, &i) == false ? item[i].x = -1 :
+			(purge_str(item, &i, fd));//faire gestionfile
 	}
 }
 
@@ -106,7 +107,7 @@ int is_regular_file(const char *path)
     struct stat path_stat;
 
     stat(path, &path_stat);
-    return S_ISREG(path_stat.st_mode);
+    return (S_ISREG(path_stat.st_mode));
 }
 
 int take_filename(item_t *item)

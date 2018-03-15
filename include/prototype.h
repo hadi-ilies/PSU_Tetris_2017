@@ -10,6 +10,16 @@
 #include "my.h"
 #include "map.h"
 
+void move_tetro_drop(game_t *game, item_t *cp_tetr, map_t *game_map);
+void command(char key[10], game_t *game, item_t *cp_tetr, map_t *game_map);
+void display_windows(game_t *game);
+void pause_key(char key[10], game_t *game);
+void add_score(game_t *game);
+void game_over(game_t *game);
+int tetro_colision(game_t *game, item_t *cp_tetr, map_t *game_map);
+int best_score(game_t *game);
+int tetro_colision_r_l(game_t *game, item_t *cp_tetr, map_t *game_map);
+void insert_base_ter(item_t *cp_tetr, map_t *game_map, game_t *game);
 void set_color_without_win(int color);
 void display_tetro_base(game_t *game, map_t *game_map);
 void display_tetro(game_t *game, item_t *cp_tetr);

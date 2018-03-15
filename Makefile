@@ -13,6 +13,9 @@ MAPDIR	=	$(SRCDIR)map/
 PARSDIR	=	$(SRCDIR)parsing/
 
 SRC	=	$(SRCDIR)main.c \
+		$(SRCDIR)insert_in_to_map.c \
+		$(SRCDIR)colisions.c \
+		$(SRCDIR)command.c \
 		$(SRCDIR)exit.c \
 		$(PARSDIR)parsing.c \
 		$(PARSDIR)parsing2.c \

@@ -25,7 +25,7 @@ void without_next(char **argv, int argc)
 	bool next = true;
 
 	for (int i = 1; i < argc; i++) {
-		if ((my_strncmp(argv[i], "--without-next=", 7) == 0
+		if ((my_strncmp(argv[i], "--without-next=", 15) == 0
 		|| my_strncmp(argv[i], "-w", 2) == 0)) {
 			my_printf(1, "Next : no\n");
 			next = false;
@@ -63,7 +63,7 @@ void mapsize(char **argv, int argc)
 	char *command;
 
 	for (int i = 1; i < argc; i++) {
-		if ((my_strncmp(argv[i], "--map-size=", 7) == 0)) {
+		if ((my_strncmp(argv[i], "--map-size=", 11) == 0)) {
 			command = command_size(argv[i]);
 			break;
 		} else

@@ -19,7 +19,8 @@
 
 void there_is_error_size(game_t *game)
 {
-	if (game->key.size_height > 50 || game->key.size_width > 50) // i have to change value
+	if (game->key.size_height > 50
+	|| game->key.size_width > 50) // i have to change value
 		exit (84);
 }
 

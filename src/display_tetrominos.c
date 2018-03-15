@@ -14,11 +14,14 @@
 
 void display_tetro_base(game_t *game, map_t *game_map)
 {
-	for (int i = 0; i < game_map->nb_case_x; i++) {
-		for (int j = 0; j < game_map->nb_case_y; j++) {
-			set_color(game->win.win, game_map->tab[i][j].color);
-			game_map->tab[i][j].type == '*' ? mvwprintw(game->win.win, j + 1, i + 1, "%c", game_map->tab[i][j]) : 0;
-			wattroff(game->win.win, COLOR_PAIR(1));
+	for (int i = 0; i < (int)game_map->nb_case_x; i++) {
+		for (int j = 0; j < (int)game_map->nb_case_y; j++) {
+			game_map->tab[i][j].type == '*' ?
+			set_color(game->win.win, game_map->tab[i][j].color) : 0;
+			game_map->tab[i][j].type == '*' ?
+			mvwprintw(game->win.win, j + 1, i + 1, "%c", game_map->tab[i][j]) : 0;
+			game_map->tab[i][j].type == '*' ?
+			wattroff(game->win.win, COLOR_PAIR(1)) : 0;
 		}
 	}
 }

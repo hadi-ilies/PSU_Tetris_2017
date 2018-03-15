@@ -6,11 +6,21 @@
 */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <time.h>
 #include "my.h"
+
+void add_score(game_t *game)
+{
+	static int check_level = 0;
+
+	game->score += 10;
+	game->score >= 200 && check_level++ == 10 ? game->key.level += '1' : 0;
+	game->score >= 200 && check_level++ == 10 ? check_level = 0 : 0;
+}
 
 char *display_high_score()
 {
@@ -46,9 +56,11 @@ void display_score(game_t *game)
 
 	clk_start == -1 ? clk_start = time(NULL) : 0;
 	mvwprintw(game->win.score, 0, 10, "SCOREBOARD");
-	mvwprintw(game->win.score, 2, 1, "High Score:\t%s", display_high_score());
+	mvwprintw(game->win.score, 2, 1, "High Score:\t%s",
+		display_high_score());
 	mvwprintw(game->win.score, 4, 1, "Score:\t%d", game->score);
 	mvwprintw(game->win.score, 8, 1, "Lines:\t%d", 1);
 	mvwprintw(game->win.score, 10, 1, "Level:\t%d", game->key.level - '0');
-	mvwprintw(game->win.score, 14, 1, "Timer:\t%.2d:%.2d", game->time = (clk - clk_start) / 60, (clk - clk_start)% 60);
+	mvwprintw(game->win.score, 14, 1, "Timer:\t%.2d:%.2d",
+		game->time = (clk - clk_start) / 60, (clk - clk_start)% 60);
 }

@@ -15,6 +15,10 @@ int exit_game(char key[10], game_t *game)
 {
 	if (read(0, key, 3) == 1 && key[0] == game->key.key_quit) {
 		mode(0);
+		delwin(game->win.win);
+		delwin(game->win.score);
+		delwin(game->win.title);
+		endwin();
 		return (1);
 	} else
 		return (0);

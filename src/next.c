@@ -7,15 +7,10 @@
 
 #include <unistd.h>
 #include <stdlib.h>
-#include <sys/types.h>
-#include <stdio.h>
-#include <unistd.h>
 #include <ncurses.h>
-#include <stdbool.h>
-#include <string.h>
-#include <fcntl.h>
 #include "my.h"
 #include "prototype.h"
+#include "macros.h"
 
 int create_next(void)
 {
@@ -26,8 +21,8 @@ int create_next(void)
 void display_next(game_t *game)
 {
 	wclear(game->win.next_i);
-	wborder(game->win.next_i, '|', '|', '-', '-', '/', '\\', '\\', '/');//car clear enleve les bord
-	game->rand_next == game->move.nb_tet ? game->rand_next = 2 : 0; // a revoir
+	BORDER_WIN_NEXT;
+	game->rand_next == game->move.nb_tet ? game->rand_next = 2 : 0;
 	mvwprintw(game->win.next_i, 0, 5, "<Next>");
 	set_color(game->win.next_i, game->tetrominos[game->rand_next].color);
 	for (int i = 0; i < game->tetrominos[game->rand_next].y; i++) {

@@ -30,7 +30,7 @@ int mode(int i)
 	newt.c_lflag &= ~ICANON;
 	newt.c_lflag &= ~ECHO;
 	newt.c_cc[VMIN] = 0;
-	newt.c_cc[VTIME] = 2;
+	newt.c_cc[VTIME] = 1;//2
 	ioctl(0, TCSETS, &newt);
 	}
 	if (i == 0)
