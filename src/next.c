@@ -14,7 +14,7 @@
 
 int create_next(void)
 {
-	int next = rand() % (count_file() - 2);
+	int next = rand() % (count_file() - 2); //supr
 	return (next);
 }
 

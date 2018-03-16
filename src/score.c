@@ -25,18 +25,23 @@ void add_score(game_t *game)
 char *display_high_score()
 {
 	int fd = open("best_score.txt", O_RDONLY);
+	char *str;
 
 	if (fd == -1)
 		exit (84);
-	return (get_next_line(fd));
+	str = get_next_line(fd);
+	close(fd);
+	return (str);
 }
 
 void insert_best_score(game_t *game)
 {
 	int fd = open("best_score.txt", O_CREAT | O_WRONLY);
+
 	if (fd == -1)
 		exit (84);
 	write(fd, inttostr(game->score), my_strlen(inttostr(game->score)));
+	close(fd);
 }
 
 int best_score(game_t *game)
@@ -60,7 +65,7 @@ void display_score(game_t *game)
 		display_high_score());
 	mvwprintw(game->win.score, 4, 1, "Score:\t%d", game->score);
 	mvwprintw(game->win.score, 8, 1, "Lines:\t%d", 1);
-	mvwprintw(game->win.score, 10, 1, "Level:\t%d", game->key.level - '0');
+	mvwprintw(game->win.score, 10, 1, "Level:\t%d", game->key.level);
 	mvwprintw(game->win.score, 14, 1, "Timer:\t%.2d:%.2d",
 		game->time = (clk - clk_start) / 60, (clk - clk_start)% 60);
 }

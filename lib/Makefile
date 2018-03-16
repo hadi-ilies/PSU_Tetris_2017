@@ -9,6 +9,7 @@ NAME	=	libmy.a
 
 SRC	=	my_strlen.c \
 		my_printf.c \
+		my_strcmp.c \
 		my_malloc.c \
 		my_malloc2.c \
 		strncmp.c \
@@ -27,12 +28,12 @@ CFLAGS	+=	-fdiagnostics-color
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-		ar rc $(NAME) $(OBJ)
+		@ar rc $(NAME) $(OBJ)
 
 clean	:
-		rm -f $(OBJ)
+		@rm -f $(OBJ)
 
 fclean	:	clean
-		rm -f $(NAME)
+		@rm -f $(NAME)
 
 re	:	fclean all

@@ -21,7 +21,7 @@ void display_stat(game_t *game)
 		best_score(game));
 	mvwprintw(game->win.game_over, 4, 1, "Score:\t%d", game->score);
 	mvwprintw(game->win.game_over, 10, 1, "Level:\t%d",
-		game->key.level - '0');
+		game->key.level);
 	mvwprintw(game->win.game_over, 14, 1, "Timer:\t%.2d:%.2d", game->time);
 	wrefresh(game->win.game_over);
 }

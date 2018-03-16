@@ -17,7 +17,7 @@ void display_title(game_t *game)
 	static int j = 1;
 	static int clk = -1;
 
-	time(NULL) != clk || !(rand() % 5) ? set_color(game->win.title, j) : 0;
+	time(NULL) != clk || !(rand() % 500) ? set_color(game->win.title, j) : 0;
 	clk = time(NULL);
 	for (int i = 0; i < count_row_map("titre"); i++) {
 		mvwprintw(game->win.title, 15 / 2 - count_row_map("titre") / 2 + i,

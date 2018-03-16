@@ -15,6 +15,7 @@ PARSDIR	=	$(SRCDIR)parsing/
 SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)insert_in_to_map.c \
 		$(SRCDIR)colisions.c \
+		$(SRCDIR)item_rotate_right.c \
 		$(SRCDIR)command.c \
 		$(SRCDIR)exit.c \
 		$(PARSDIR)parsing.c \
@@ -39,7 +40,6 @@ SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)save_command_game2.c \
 		$(SRCDIR)save_command_game.c \
 		$(SRCDIR)game_create.c \
-		$(SRCDIR)merge_sort.c \
 		$(SRCDIR)colors.c \
 		$(SRCDIR)get_next_line.c \
 		$(SRCDIR)help.c \
@@ -60,15 +60,15 @@ LDFLAGS	=	-L $(LIBDIR) -lmy
 all	:	$(NAME)
 
 $(NAME)	:	$(OBJ)
-		make -C $(LIBDIR)
-		cc -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
+		@make -C $(LIBDIR)
+		@cc -o $(NAME) $(OBJ) $(CFLAGS) $(LDFLAGS)
 
 clean	:
-		make clean -C $(LIBDIR)
-		rm -f $(OBJ)
+		@make clean -C $(LIBDIR)
+		@rm -f $(OBJ)
 
 fclean	:	clean
-		make fclean -C $(LIBDIR)
-		rm -f $(NAME)
+		@make fclean -C $(LIBDIR)
+		@rm -f $(NAME)
 
 re	:	fclean all

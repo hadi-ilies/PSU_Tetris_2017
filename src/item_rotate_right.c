@@ -7,14 +7,26 @@
 
 #include "my.h"
 
-tetro_t rotate_right(tetro_t *tetro)
+item_t tetro_create(item_t *tetro)
 {
-	tetro_t new_tetro = tetro_create(tetro->nb_case_y, tetro->nb_case_x);
+	item_t new_tetro;
 
-	for (size_t i = 0; i < new_tetro.nb_case_x; i++)
-		for (size_t j = 0; j < new_tetro.nb_case_y; j++) {
-			new_tetro.tab[i][j] = tetro->tab[j][new_tetro.nb_case_x - 1 - i];
-		}
-	tetro_destroy(tetro);
+	new_tetro.coord_x = tetro->coord_x;
+	new_tetro.coord_y = tetro->coord_y; //supr
+	new_tetro.x = tetro->y;
+	new_tetro.y = tetro->x;
+	new_tetro.color = tetro->color;
+	new_tetro.item = mem_alloc_2d_array(new_tetro.y, new_tetro.x);
+	return (new_tetro);
+}
+
+item_t rotate(item_t *tetro)
+{
+	item_t new_tetro = tetro_create(tetro);
+
+	for (int i = 0; i < new_tetro.y; i++)
+		for (int j = 0; j < new_tetro.x; j++)
+			new_tetro.item[i][j] = tetro->item[j][new_tetro.y - 1 - i];
+	//tetro_destroy(tetro);
 	return (new_tetro);
 }

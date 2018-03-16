@@ -73,7 +73,7 @@ int save_level(char **argv, int argc)
 		} else
 			command = "1";
 	}
-	level = command[0];
+	level = command[0] - '0';
 	return (level);
 }
 

@@ -58,6 +58,7 @@ typedef struct {
 	item_t *tetrominos;
 } game_t;
 
+int my_strcmp(char *s1, char *s2);
 char *inttostr(int nb);
 char **my_str_to_word_array(char *str);
 void *my_malloc(size_t size);

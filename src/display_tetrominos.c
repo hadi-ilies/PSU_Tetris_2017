@@ -28,7 +28,7 @@ void display_tetro_base(game_t *game, map_t *game_map)
 
 void display_tetro(game_t *game, item_t *cp_tetr)
 {
-	for (int i = 0; i < game->tetrominos[game->move.nb_tet].y; i++)
-		for (int j = 0; j < game->tetrominos[game->move.nb_tet].x; j++)
-			game->tetrominos[game->move.nb_tet].item[i][j] == '*' ? mvwprintw(game->win.win, cp_tetr[game->move.nb_tet].coord_y + i + 1, cp_tetr[game->move.nb_tet].coord_x + j + 1, "%c", game->tetrominos[game->move.nb_tet].item[i][j]) : 0;
+	for (int i = 0; i < cp_tetr[game->move.nb_tet].y; i++)
+		for (int j = 0; j < cp_tetr[game->move.nb_tet].x; j++)
+			cp_tetr[game->move.nb_tet].item[i][j] == '*' ? mvwprintw(game->win.win, cp_tetr[game->move.nb_tet].coord_y + i + 1, cp_tetr[game->move.nb_tet].coord_x + j + 1, "%c", cp_tetr[game->move.nb_tet].item[i][j]) : 0;
 }
