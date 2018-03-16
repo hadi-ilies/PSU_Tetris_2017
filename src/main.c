@@ -46,7 +46,6 @@ int game_loop(game_t *game)
 	while (1) {
 		char key[3] = {'\0'};
 
-		//improve_level(game);
 		if (exit_game(key, game) == 1)
 			break;
 		pause_key(key, game);
@@ -68,7 +67,7 @@ int item_tetris(int argc, char **argv)
 	game_t game = game_create(argc, argv);
 
 	initscr();
-	//raw();//i dont know
+	raw();
 	keypad(stdscr, TRUE);
 	noecho();
 	curs_set(0);

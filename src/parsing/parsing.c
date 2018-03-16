@@ -12,7 +12,6 @@
 #include <unistd.h>
 #include <ncurses.h>
 #include <stdbool.h>
-#include <string.h>
 #include <fcntl.h>
 #include "my.h"
 #include "prototype.h"
@@ -31,10 +30,12 @@ void parse_arg(char **argv, int *i)
 {
 	if (my_strlen(argv[*i]) >= 2 && L_L && R_T && D_Q && P_W && D_LEV && K_L
 	&& K_R && K_T && K_D && K_Q && K_P && M_S && W_N && DEG && HELP) {
+		help(argv);
 		exit (84);
-	} if (my_strlen(argv[*i]) == 1 && parse_touch(argv, i) == false)
-		exit (84);
-	else
+	} if (my_strlen(argv[*i]) == 1 && parse_touch(argv, i) == false) {
+		  help(argv);
+		  exit (84);
+	} else
 		return;
 }
 
@@ -42,8 +43,10 @@ void check_last_arg(char **argv, int argc)
 {
 	for (int i = 0; i < argc; i++)
 		if (argv[i][0] == '-' && argv[i][1] != 'D' && argv[i][1] != '-'
-		&& argv[i][1] != 'w' && argv[i + 1] == NULL)
+		&& argv[i][1] != 'w' && argv[i + 1] == NULL) {
+			help(argv);
 			exit (84);
+		}
 }
 
 char *gettermi(char **env)

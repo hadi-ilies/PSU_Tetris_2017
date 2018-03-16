@@ -34,8 +34,10 @@ void check_error_size2(char **argv, int *i)
 	for (; argv[*i][j] != '\0'; j++) {
 		(argv[*i][j] == ',') ? check_vir = 1 : 0;
 		if ((argv[*i][j] < '0' && argv[*i][j] != ',')
-		|| (argv[*i][j] > '9'))
+		|| (argv[*i][j] > '9')) {
+			help(argv);
 			exit (84);
+		}
 	}
 	(check_vir == 0) ? exit(84) : 0;
 }
