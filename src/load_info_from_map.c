@@ -5,7 +5,6 @@
 ** test
 */
 
-#include <unistd.h>
 #include <stdlib.h>
 #include <sys/types.h>
 #include <stdio.h>
@@ -19,6 +18,7 @@
 #include <fcntl.h>
 #include "my.h"
 #include "prototype.h"
+#include "macros.h"
 
 void purge_str(item_t *item, int *i, int fd)
 {
@@ -35,7 +35,7 @@ void purge_str(item_t *item, int *i, int fd)
 	}
 }
 
-bool check_file(item_t *item, int *i) // update check_file i must manage error
+bool check_file(item_t *item, int *i)
 {
 	char **array = my_str_to_word_array(item[*i].str);
 
@@ -61,7 +61,7 @@ void init_item(item_t *item)
 		item[i].coord_x = 3;
 		item[i].coord_y = 3;
 		check_file(item, &i) == false ? item[i].x = -1 :
-			(purge_str(item, &i, fd));//faire gestionfile
+			(purge_str(item, &i, fd));
 	}
 }
 
@@ -87,48 +87,9 @@ int count_file(void)
 		exit(84);
 	while ((d = readdir(dir))) {
 		(d == NULL) ? exit(84) : 0;
-		if (d->d_name[0] != '.')
+		if (d->d_name[0] != '.' && T_FILE)
 			nb_file++;
 	}
 	closedir(dir);
 	return (nb_file);
-}
-
-int mystrlen_p(char *str)
-{
-	int i = 0;
-
-	for (i = 0; str[i] != '.'; i++);
-	return (i);
-}
-
-int is_regular_file(const char *path)
-{
-    struct stat path_stat;
-
-    stat(path, &path_stat);
-    return (S_ISREG(path_stat.st_mode));
-}
-
-int take_filename(item_t *item)
-{
-	DIR *dir = NULL;
-	struct dirent *d;
-	int i = 0;
-	int j = 0;
-
-	dir = opendir("tetriminos");
-	if (dir == NULL)
-		exit(84);
-	while ((d = readdir(dir))) {
-		d == NULL ? exit (84) : 0;
-		if (is_regular_file(concat("tetriminos/", d->d_name))) { //test valgrind + faut .tetri
-			for (j = 0; d->d_name[j] > ' '; j++)
-				item[i].filename[j] = d->d_name[j];
-			item[i].filename[j] = '\0';
-			i++;
-		}
-	}
-	closedir(dir);
-	return (0);
 }

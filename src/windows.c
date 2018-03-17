@@ -14,7 +14,7 @@
 
 void display_windows(game_t *game)
 {
-	game->move.nb_tet == game->rand_next
+	ID == game->rand_next
 		? game->rand_next = create_next() : 0;
 	display_title(game);
 	game->key.next == true ? display_next(game) : 0;

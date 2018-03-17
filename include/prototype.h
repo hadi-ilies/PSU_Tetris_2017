@@ -10,13 +10,14 @@
 #include "my.h"
 #include "map.h"
 
+void check_line(game_t *game, map_t *game_map);
 item_t *sort_debug(item_t *item);
-int exit_game(char key[3], game_t *game);
+int exit_game(char key[4], game_t *game);
 void move_tetro_drop(game_t *game, item_t *cp_tetr, map_t *game_map);
 item_t rotate(item_t *tetro);
-void command(char key[10], game_t *game, item_t *cp_tetr, map_t *game_map);
+void command(char key[4], game_t *game, item_t *cp_tetr, map_t *game_map);
 void display_windows(game_t *game);
-void pause_key(char key[10], game_t *game);
+void pause_key(char key[4], game_t *game);
 void add_score(game_t *game);
 void game_over(game_t *game);
 int tetro_colision(game_t *game, item_t *cp_tetr, map_t *game_map);
@@ -81,4 +82,5 @@ item_t *create_item(void);
 int count_file(void);
 int take_filename(item_t *item);
 bool help(char **argv);
+int mystrlen_p(char *str);
 int mode (int i);

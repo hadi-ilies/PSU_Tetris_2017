@@ -25,10 +25,10 @@ typedef struct {
 } win_t;
 
 typedef struct {
-	int coord_x;//
-	int coord_y;//
-	int x;//size_x
-	int y;//size_y
+	int coord_x;
+	int coord_y;
+	int x;
+	int y;
 	int color;
 	char *filename;
 	char *str;

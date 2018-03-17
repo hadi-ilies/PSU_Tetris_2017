@@ -33,8 +33,8 @@ game_t game_create(int argc, char **argv)
 	game.key.size_height = save_mapsize_height(argv, argc);
 	game.key.size_width = save_mapsize_width(argv, argc);
 	game.tetrominos = create_item();
-	game.move.x = game.tetrominos[0].x;//
-	game.move.y = game.tetrominos[0].y;//a revoir
+	game.move.x = game.tetrominos[0].x;
+	game.move.y = game.tetrominos[0].y;
 	game.move.nb_tet = 0;
 	game.score = 0;
 	return (game);

@@ -13,28 +13,15 @@
 #include "map.h"
 #include "macros.h"
 
-void line_down(map_t *game_map, int line)
+void game_loop_display(game_t *game, item_t *cp_tetr, map_t *game_map,
+		char key[4])
 {
-	for (int j = line; j > 0; j--)
-		for (int i = 0; i < (int)game_map->nb_case_x; i++)
-			game_map->tab[i][j] = game_map->tab[i][j - 1];
-}
-
-void check_line(game_t *game, map_t *game_map)
-{
-	//a voir si ca fonctionne
-	for (int j = 0; j < (int)game_map->nb_case_y; j++) {
-		int line_filled = 0;
-
-		for (int i = 0; i < (int)game_map->nb_case_x; i++)
-			game_map->tab[i][j].type != ' ' ? line_filled++ : 0;
-		if (line_filled == (int)game_map->nb_case_x) {
-			for (int i = 0; i < (int)game_map->nb_case_x; i++)
-				game_map->tab[i][j].type = ' ';
-			line_down(game_map, j);
-			add_score(game);// a voir
-		}
-	}
+	pause_key(key, game);
+	create_border(game);
+	set_color(game->win.win, game->tetrominos[ID].color);
+	display_tetro(game, cp_tetr);
+	display_windows(game);
+	command(key, game, cp_tetr, game_map);
 }
 
 void game_loop(game_t *game)
@@ -44,16 +31,11 @@ void game_loop(game_t *game)
 
 	mode(1);
 	while (1) {
-		char key[3] = {'\0'};
+		char key[4] = {'\0'};
 
 		if (exit_game(key, game) == 1)
 			break;
-		pause_key(key, game);
-		create_border(game);
-		set_color(game->win.win, game->tetrominos[game->move.nb_tet].color);
-		display_tetro(game, cp_tetr);
-		display_windows(game);
-		command(key, game, cp_tetr, &game_map);
+		game_loop_display(game, cp_tetr, &game_map, key);
 		if (move_tetro_auto(game, cp_tetr, &game_map) == 1)
 			break;
 		display_tetro_base(game, &game_map);
@@ -92,12 +74,11 @@ int there_is_d(char **argv, int argc)
 int main(int argc, char **argv, char **env)
 {
 	bool bol = false;
-	srand(time(NULL));
 
+	srand(time(NULL));
 	if (env[0] == NULL)
 		return (84);
 	parsing(argv, argc, env);
-	//mode(1);
 	if (argc == 1)
 		return (item_tetris(argc, argv));
 	if (my_strncmp(argv[1], "--help", 5) == 0)

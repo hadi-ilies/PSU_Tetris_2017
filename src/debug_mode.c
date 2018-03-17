@@ -16,6 +16,7 @@
 
 void debug_mode(char **argv, int argc)
 {
+	mode(1);
 	item_t *item = create_item();
 
 	my_printf(1, "*** DEBUG MODE ***\n");
@@ -48,6 +49,12 @@ void debug_mode_2(char **argv, int argc, item_t *item)
 	debug_mode_3(sort_debug(item));
 }
 
+void display_tetri_debug(item_t *item, int i)
+{
+	for (int j = 0; j < item[i].y; j++)
+		my_printf(1, "%s\n", item[i].item[j]);
+}
+
 void debug_mode_3(item_t *item)
 {
 	char buff[3] = {'\0'};
@@ -56,13 +63,13 @@ void debug_mode_3(item_t *item)
 		if (item[i].x == -1)
 			my_printf(1, "Tetriminos : Name %s : Error\n", D_N);
 		else {
-			my_printf(1, "Tetriminos : Name %s : Size %d*%d",  D_N, item[i].x, item[i].y);
+			DISPLAY_NAME_AND_SIZE;
 			my_printf(1, " : Color %d :\n", item[i].color);
-			for (int j = 0; j < item[i].y; j++)
-				my_printf(1, "%s\n", item[i].item[j]);
+			display_tetri_debug(item, i);
 		}
 	}
 	my_printf(1, "Press any key to start Tetris\n");
 	while (buff[0] == '\0')
 		read(0, buff, 3);
+	mode(0);
 }

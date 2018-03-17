@@ -15,9 +15,9 @@
 
 void insert_base_ter(item_t *cp_tetr, map_t *game_map, game_t *game)
 {
-	for (int i = 0; i < cp_tetr[game->move.nb_tet].y; i++)
-		for (int j = 0; cp_tetr[game->move.nb_tet].item[i][j] != '\0'; j++) {
-			cp_tetr[game->move.nb_tet].item[i][j] == '*' ?	game_map->tab[j + C_X][i + C_Y].type = cp_tetr[game->move.nb_tet].item[i][j] : 0;
-			game_map->tab[j + C_X][i + C_Y].color = cp_tetr[game->move.nb_tet].color;
+	for (int i = 0; i < cp_tetr[ID].y; i++)
+		for (int j = 0; cp_tetr[ID].item[i][j] != '\0'; j++) {
+			INSERT_IN_MAP;
+			game_map->tab[j + C_X][i + C_Y].color = COLOR;
 		}
 }

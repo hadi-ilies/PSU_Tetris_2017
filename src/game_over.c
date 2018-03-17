@@ -11,6 +11,7 @@
 #include "my.h"
 #include "prototype.h"
 #include "map.h"
+#include "macros.h"
 
 void display_stat(game_t *game)
 {
@@ -29,13 +30,12 @@ void display_stat(game_t *game)
 void game_over(game_t *game)
 {
 	char **gameover = map_cr("game_over");
-	char key[10] = {'\0'};
+	char key[4] = {'\0'};
 
 	clear();
 	for (int i = 0; i < count_row_map("game_over"); i++) {
 		set_color_without_win(i);
-		mvprintw(LINES / 2 - count_row_map("game_over") / 2 + i,
-		COLS / 2 - (count_col_map("game_over") / 2), gameover[i]);
+		DISPLAY_GAMEOVER;
 	}
 	refresh();
 	display_stat(game);
