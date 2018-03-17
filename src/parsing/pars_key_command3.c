@@ -35,7 +35,23 @@ void without_next(char **argv, int argc)
 		my_printf(1, "Next : Yes\n");
 }
 
-char *command_size(char *size)
+void check_er_size(char *size, char **argv)
+{
+	int i = 0;
+
+	for (; size[i] != '='; i++);
+	i++;
+	for (; size[i] != '\0'; i++) {
+		if ((size[i] < '0' && size[i] != ',')
+		|| (size[i] > '9' && size[i] != ',')) {
+			help(argv);
+			exit(84);
+		}
+	}
+
+}
+
+char *command_size(char *size, char **argv)
 {
 	char *str = my_malloc(sizeof(char) * my_strlen(size));
 	int i = 0;
@@ -44,6 +60,7 @@ char *command_size(char *size)
 	for (; size[i] != '='; i++);
 	i++;
 	for (; size[i] != ','; i++) {
+		check_er_size(size, argv);
 		str[j] = size[i];
 		j++;
 	}
@@ -64,7 +81,7 @@ void mapsize(char **argv, int argc)
 
 	for (int i = 1; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--map-size=", 11) == 0)) {
-			command = command_size(argv[i]);
+			command = command_size(argv[i], argv);
 			break;
 		} else
 			command = "20*10";

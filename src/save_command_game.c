@@ -85,7 +85,7 @@ int save_mapsize_height(char **argv, int argc)
 
 	for (int i = 0; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--map-size=", 7) == 0)) {
-			command = command_size(argv[i]);
+			command = command_size(argv[i], argv);
 			break;
 		} else
 			command = "20*10";
@@ -109,7 +109,7 @@ int save_mapsize_width(char **argv, int argc)
 
 	for (int i = 0; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--map-size=", 7) == 0)) {
-			command = command_size(argv[i]);
+			command = command_size(argv[i], argv);
 			break;
 		} else
 			command = "20*10";

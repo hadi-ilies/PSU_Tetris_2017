@@ -17,11 +17,13 @@
 #include "my.h"
 #include "prototype.h"
 
-void there_is_error_size(game_t *game)
+void there_is_error_size(game_t *game, char **argv)
 {
-	if (game->key.size_height > 50
-	|| game->key.size_width > 50) // i have to change value
+	if (game->key.size_height < 20 || game->key.size_height > 50
+	|| game->key.size_width < 10 || game->key.size_width > 50) {
+		help(argv);
 		exit (84);
+	}
 }
 
 void check_error_size2(char **argv, int *i)
@@ -39,6 +41,7 @@ void check_error_size2(char **argv, int *i)
 			exit (84);
 		}
 	}
+	(check_vir == 0) ? help(argv) : 0;
 	(check_vir == 0) ? exit(84) : 0;
 }
 

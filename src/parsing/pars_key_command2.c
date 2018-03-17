@@ -20,10 +20,11 @@
 #include <fcntl.h>
 #include "prototype.h"
 
-bool pars_level(char *command)
+bool pars_level(char *command, char **argv)
 {
 	for (int i = 0; command[i] != '\0'; i++) {
 		if (command[i] < '1' || command [i] > '9') {
+			help(argv);
 			exit(84);
 		}
 	}
@@ -44,7 +45,7 @@ void level(char **argv, int argc)
 		} else
 			command = "1";
 	}
-	pars_level(command);
+	pars_level(command, argv);
 	if (command[0] == ' ')
 		my_printf(1, "Level : (space)\n");
 	else
