@@ -4,6 +4,7 @@
 ** File description:
 ** quit
 */
+
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
@@ -11,7 +12,7 @@
 #include "prototype.h"
 #include "map.h"
 
-int exit_game(char key[10], game_t *game)
+int exit_game(char key[3], game_t *game)
 {
 	if (read(0, key, 3) == 1 && key[0] == game->key.key_quit) {
 		mode(0);

@@ -27,7 +27,7 @@ void without_next(char **argv, int argc)
 	for (int i = 1; i < argc; i++) {
 		if ((my_strncmp(argv[i], "--without-next=", 15) == 0
 		|| my_strncmp(argv[i], "-w", 2) == 0)) {
-			my_printf(1, "Next : no\n");
+			my_printf(1, "Next : No\n");
 			next = false;
 			break;
 		}

@@ -10,6 +10,8 @@
 #include "my.h"
 #include "map.h"
 
+item_t *sort_debug(item_t *item);
+int exit_game(char key[3], game_t *game);
 void move_tetro_drop(game_t *game, item_t *cp_tetr, map_t *game_map);
 item_t rotate(item_t *tetro);
 void command(char key[10], game_t *game, item_t *cp_tetr, map_t *game_map);
@@ -55,7 +57,7 @@ int save_level(char **argv, int argc);
 game_t game_create(int argc, char **argv);
 char *display_name(char *str);
 void debug_mode_2(char **argv, int argc, item_t *item);
-void debug_mode_3(char **argv, item_t *item);
+void debug_mode_3(item_t *item);
 char *command_l(char *command);
 void keydrop(char **argv, int argc);
 void keypause(char **argv, int argc);

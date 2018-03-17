@@ -42,7 +42,7 @@ void initi_win(game_t *game)
 {
 	game->win.win = newwin(WIN_HEIGHT + 2, WIN_WIDTH + 2,
 			(LINES / 2) - WIN_HEIGHT, (COLS / 2));
-	game->win.score = newwin(20, 10 + (COLS / 4), LINES/2, 0);
+	game->win.score = newwin(20, 10 + (COLS / 4), LINES / 2, 0);
 	game->key.next == true ?
 		game->win.next_i = newwin(10, 20, 0, COLS - WIN_HEIGHT) : 0;
 	game->win.title = newwin(15, 50, 0, 0);

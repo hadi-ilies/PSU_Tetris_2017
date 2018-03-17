@@ -16,20 +16,20 @@
 void line_down(map_t *game_map, int line)
 {
 	for (int j = line; j > 0; j--)
-		for (int i = 0; i < game_map->nb_case_x; i++)
+		for (int i = 0; i < (int)game_map->nb_case_x; i++)
 			game_map->tab[i][j] = game_map->tab[i][j - 1];
 }
 
-int check_line(game_t *game, map_t *game_map)
+void check_line(game_t *game, map_t *game_map)
 {
 	//a voir si ca fonctionne
-	for (int j = 0; j < game_map->nb_case_y; j++) {
+	for (int j = 0; j < (int)game_map->nb_case_y; j++) {
 		int line_filled = 0;
 
-		for (int i = 0; i < game_map->nb_case_x; i++)
+		for (int i = 0; i < (int)game_map->nb_case_x; i++)
 			game_map->tab[i][j].type != ' ' ? line_filled++ : 0;
-		if (line_filled == game_map->nb_case_x) {
-			for (int i = 0; i < game_map->nb_case_x; i++)
+		if (line_filled == (int)game_map->nb_case_x) {
+			for (int i = 0; i < (int)game_map->nb_case_x; i++)
 				game_map->tab[i][j].type = ' ';
 			line_down(game_map, j);
 			add_score(game);// a voir
@@ -37,7 +37,7 @@ int check_line(game_t *game, map_t *game_map)
 	}
 }
 
-int game_loop(game_t *game)
+void game_loop(game_t *game)
 {
 	item_t *cp_tetr = create_item();
 	map_t game_map = map_create(WIN_WIDTH, WIN_HEIGHT);

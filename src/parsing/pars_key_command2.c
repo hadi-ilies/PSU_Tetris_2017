@@ -63,7 +63,7 @@ void keyleft(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = tigetstr("kcub1");//"^EOD";
+			command = tigetstr("kcub1");
 	} if (command[0] == '\e')
 		my_printf(1, "Key Left : ^E%s\n", command + 1);
 	else if (command[0] == ' ')
@@ -84,7 +84,7 @@ void keyright(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = tigetstr("kcuf1");//"^EOC";
+			command = tigetstr("kcuf1");
 	} if (command[0] == '\e')
 		  my_printf(1, "Key Right : ^E%s\n", command + 1);
 	else if (command[0] == ' ')
@@ -105,7 +105,7 @@ void keyturn(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = tigetstr("kcuu1");//"^EOA";
+			command = tigetstr("kcuu1");
 	} if (command[0] == '\e')
 		  my_printf(1, "Key Turn : ^E%s\n", command + 1);
 	else if (command[0] == ' ')

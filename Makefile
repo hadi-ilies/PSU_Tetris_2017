@@ -15,6 +15,7 @@ PARSDIR	=	$(SRCDIR)parsing/
 SRC	=	$(SRCDIR)main.c \
 		$(SRCDIR)insert_in_to_map.c \
 		$(SRCDIR)colisions.c \
+		$(SRCDIR)debug_sorting.c \
 		$(SRCDIR)item_rotate_right.c \
 		$(SRCDIR)command.c \
 		$(SRCDIR)exit.c \

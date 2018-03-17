@@ -12,7 +12,7 @@ item_t tetro_create(item_t *tetro)
 	item_t new_tetro;
 
 	new_tetro.coord_x = tetro->coord_x;
-	new_tetro.coord_y = tetro->coord_y; //supr
+	new_tetro.coord_y = tetro->coord_y;
 	new_tetro.x = tetro->y;
 	new_tetro.y = tetro->x;
 	new_tetro.color = tetro->color;
@@ -22,11 +22,10 @@ item_t tetro_create(item_t *tetro)
 
 item_t rotate(item_t *tetro)
 {
-	item_t new_tetro = tetro_create(tetro);
+	item_t ntetro = tetro_create(tetro);
 
-	for (int i = 0; i < new_tetro.y; i++)
-		for (int j = 0; j < new_tetro.x; j++)
-			new_tetro.item[i][j] = tetro->item[j][new_tetro.y - 1 - i];
-	//tetro_destroy(tetro);
-	return (new_tetro);
+	for (int i = 0; i < ntetro.y; i++)
+		for (int j = 0; j < ntetro.x; j++)
+			ntetro.item[i][j] = tetro->item[j][ntetro.y - 1 - i];
+	return (ntetro);
 }
