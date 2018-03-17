@@ -26,6 +26,10 @@ void purge_str(item_t *item, int *i, int fd)
 
 	item[*i].x = my_atoi(array[0]);
 	item[*i].y = my_atoi(array[1]);
+	if (item[*i].x <= 0 || item[*i].y <= 0) {
+		item[*i].x = -1;
+		return;
+	}
 	item[*i].color = my_atoi(array[2]);
 	item[*i].str = get_next_line(fd);
 	item[*i].item = mem_alloc_2d_array(item[*i].y, item[*i].x);
@@ -37,6 +41,8 @@ void purge_str(item_t *item, int *i, int fd)
 
 bool check_file(item_t *item, int *i)
 {
+	if (item[*i].str == NULL)
+		return(false);
 	char **array = my_str_to_word_array(item[*i].str);
 
 	if (array[1] == NULL || array[2] == NULL)
