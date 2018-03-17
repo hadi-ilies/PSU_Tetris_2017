@@ -25,7 +25,6 @@ void display_next(game_t *game)
 {
 	wclear(game->win.next_i);
 	BORDER_WIN_NEXT;
-	game->rand_next == ID ? game->rand_next = 2 : 0;
 	mvwprintw(game->win.next_i, 0, 5, "<Next>");
 	set_color(game->win.next_i, game->tetrominos[game->rand_next].color);
 	for (int i = 0; i < game->tetrominos[game->rand_next].y; i++)

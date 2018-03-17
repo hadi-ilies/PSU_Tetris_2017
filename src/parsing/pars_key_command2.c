@@ -87,7 +87,7 @@ void keyright(char **argv, int argc)
 		} else
 			command = tigetstr("kcuf1");
 	} if (command[0] == '\e')
-		  my_printf(1, "Key Right : ^E%s\n", command + 1);
+		my_printf(1, "Key Right : ^E%s\n", command + 1);
 	else if (command[0] == ' ')
 		my_printf(1, "Key Right : (space)\n");
 	else
@@ -108,7 +108,7 @@ void keyturn(char **argv, int argc)
 		} else
 			command = tigetstr("kcuu1");
 	} if (command[0] == '\e')
-		  my_printf(1, "Key Turn : ^E%s\n", command + 1);
+		my_printf(1, "Key Turn : ^E%s\n", command + 1);
 	else if (command[0] == ' ')
 		my_printf(1, "Key Turn : (space)\n");
 	else

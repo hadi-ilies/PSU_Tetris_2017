@@ -45,9 +45,9 @@ void keydrop(char **argv, int argc)
 			command = argv[i + 1];
 			break;
 		} else
-			command = tigetstr("kcud1");/*"^EOB"*/
+			command = tigetstr("kcud1");
 	} if (command[0] == '\e')
-		  my_printf(1, "Key Drop : ^E%s\n", command + 1);
+		my_printf(1, "Key Drop : ^E%s\n", command + 1);
 	else if (command[0] == ' ')
 		my_printf(1, "Key Drop : (space)\n");
 	else
@@ -68,7 +68,7 @@ void keyquit(char **argv, int argc)
 		} else
 			command = "q";
 	} if (command[0] == ' ')
-		  my_printf(1, "Key Quit : (space)\n");
+		my_printf(1, "Key Quit : (space)\n");
 	else
 		my_printf(1, "Key Quit : %s\n", command);
 }
@@ -87,7 +87,7 @@ void keypause(char **argv, int argc)
 		} else
 			command = " ";
 	} if (command[0] == ' ')
-		  my_printf(1, "Key Pause : (space)\n");
+		my_printf(1, "Key Pause : (space)\n");
 	else
 		my_printf(1, "Key Pause : %s\n", command);
 }

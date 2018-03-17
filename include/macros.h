@@ -28,10 +28,10 @@
 #define W_N my_strncmp(argv[*i], "--without-next", 14) == -1
 #define DEG my_strncmp(argv[*i], "--debug", 8) == -1
 #define HELP my_strncmp(argv[*i], "--help", 7) == -1
-#define T_FILE my_strncmp(d->d_name + mystrlen_p(d->d_name),\
+#define T_FILE my_strncmp(d->d_name + mystrlen_p(d->d_name), \
 			".tetrimino", 9) == 0
-#define DISPLAY_NAME_AND_SIZE my_printf(1, "Tetriminos : Name %s : Size %d*%d",\
-					D_N, item[i].x, item[i].y)
+#define DISPLAY_NAME_AND_SIZE my_printf(1, "Tetriminos : Name %s : Size %d*%d"\
+					, D_N, item[i].x, item[i].y)
 #define BORDER_WIN_WIN wborder(game->win.win, '|', '|', '-', '-', '+', \
 			'+', '+', '+')
 #define BORDER_WIN_SCORE wborder(game->win.score, '|', '|', '-', '-', \
@@ -49,9 +49,9 @@ _map("titre") / 2 + i, 50 / 2 - (count_col_map("titre") / 2), title[i])
 			.item[i])
 #define DISPLAY_TETRI mvwprintw(game->win.win, cp_tetr[ID].coord_y + i\
 	+ 1, cp_tetr[ID].coord_x + j + 1, "%c", cp_tetr[ID].item[i][j])
-#define DISPLAY_TETRI_BASE mvwprintw(game->win.win, j + 1, i + 1, "%c",\
+#define DISPLAY_TETRI_BASE mvwprintw(game->win.win, j + 1, i + 1, "%c", \
 			game_map->tab[i][j]) : 0
-#define DISPLAY_PAUSE mvprintw(LINES / 2 - count_row_map("pause") / 2 + i,\
+#define DISPLAY_PAUSE mvprintw(LINES / 2 - count_row_map("pause") / 2 + i, \
 			COLS / 2 - (count_col_map("pause") / 2), pause_m[i])
 #define DISPLAY_GAMEOVER mvprintw(LINES / 2 - count_row_map("game_over") / 2 +\
 		i, COLS / 2 - (count_col_map("game_over") / 2), gameover[i])
