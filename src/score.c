@@ -22,7 +22,7 @@ void add_score(game_t *game)
 	game->score >= 200 && check_level++ == 10 ? check_level = 0 : 0;
 }
 
-char *display_high_score()
+char *display_high_score(void)
 {
 	int fd = open("best_score.txt", O_RDONLY);
 	char *str;

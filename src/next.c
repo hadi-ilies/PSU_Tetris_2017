@@ -12,9 +12,12 @@
 #include "prototype.h"
 #include "macros.h"
 
-int create_next(void)
+int create_next(game_t *game)
 {
-	int next = rand() % (count_file() - 2);
+	int next = rand() % (count_file());
+
+	if (game->tetrominos[next].x == -1)
+		next = ID;
 	return (next);
 }
 

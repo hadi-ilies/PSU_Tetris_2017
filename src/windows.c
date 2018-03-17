@@ -15,7 +15,7 @@
 void display_windows(game_t *game)
 {
 	ID == game->rand_next
-		? game->rand_next = create_next() : 0;
+		? game->rand_next = create_next(game) : 0;
 	display_title(game);
 	game->key.next == true ? display_next(game) : 0;
 	display_score(game);

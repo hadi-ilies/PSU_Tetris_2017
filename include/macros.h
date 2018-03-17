@@ -7,7 +7,6 @@
 
 #pragma once
 
-/*macros parsing*/
 #define D_N display_name(item[i].filename)
 #define L_L my_strncmp(argv[*i], "-L", 3) == -1 && \
 		my_strncmp(argv[*i], "-l", 3) == -1
@@ -30,10 +29,9 @@
 #define DEG my_strncmp(argv[*i], "--debug", 8) == -1
 #define HELP my_strncmp(argv[*i], "--help", 7) == -1
 #define T_FILE my_strncmp(d->d_name + mystrlen_p(d->d_name),\
-			  ".tetrimino", 9) == 0
+			".tetrimino", 9) == 0
 #define DISPLAY_NAME_AND_SIZE my_printf(1, "Tetriminos : Name %s : Size %d*%d",\
 					D_N, item[i].x, item[i].y)
-/*macros jeu*/
 #define BORDER_WIN_WIN wborder(game->win.win, '|', '|', '-', '-', '+', \
 			'+', '+', '+')
 #define BORDER_WIN_SCORE wborder(game->win.score, '|', '|', '-', '-', \
@@ -49,9 +47,8 @@ _map("titre") / 2 + i, 50 / 2 - (count_col_map("titre") / 2), title[i])
 		[game->rand_next].y / 2 + i, 20 / 2 - (game->tetrominos\
 		[game->rand_next].x / 2), game->tetrominos[game->rand_next]\
 			.item[i])
-
 #define DISPLAY_TETRI mvwprintw(game->win.win, cp_tetr[ID].coord_y + i\
-	+ 1, cp_tetr[ID].coord_x + j + 1, "%c",	cp_tetr[ID].item[i][j])
+	+ 1, cp_tetr[ID].coord_x + j + 1, "%c", cp_tetr[ID].item[i][j])
 #define DISPLAY_TETRI_BASE mvwprintw(game->win.win, j + 1, i + 1, "%c",\
 			game_map->tab[i][j]) : 0
 #define DISPLAY_PAUSE mvprintw(LINES / 2 - count_row_map("pause") / 2 + i,\
@@ -67,5 +64,5 @@ _map("titre") / 2 + i, 50 / 2 - (count_col_map("titre") / 2), title[i])
 #define INSERT_IN_MAP cp_tetr[ID].item[i][j] == '*' ? game_map->tab[j \
 			+ C_X][i + C_Y].type = cp_tetr[ID].item[i][j] : 0
 #define COND_DROP cp_tetr[ID].y + k >= (int)game_map->nb_case_y || \
-		(game_map->tab[j + C_X][i + k + 1].type == '*'	   \
-		 && cp_tetr[ID].item[i][j] == '*')
+		(game_map->tab[j + C_X][i + k + 1].type == '*'\
+		&& cp_tetr[ID].item[i][j] == '*')
