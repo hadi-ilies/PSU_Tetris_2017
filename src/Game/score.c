@@ -12,6 +12,7 @@
 #include <fcntl.h>
 #include <time.h>
 #include "my.h"
+#include "macros.h"
 
 void add_score(game_t *game)
 {
@@ -24,7 +25,7 @@ void add_score(game_t *game)
 
 char *display_high_score(void)
 {
-	int fd = open("best_score.txt", O_RDONLY);
+	int fd = open(B_SCORE, O_RDONLY);
 	char *str;
 
 	if (fd == -1)
@@ -36,7 +37,7 @@ char *display_high_score(void)
 
 void insert_best_score(game_t *game)
 {
-	int fd = open("best_score.txt", O_CREAT | O_WRONLY);
+	int fd = open(B_SCORE, O_CREAT | O_WRONLY);
 
 	if (fd == -1)
 		exit (84);
@@ -60,6 +61,7 @@ void display_score(game_t *game)
 	int clk = time(NULL);
 
 	clk_start == -1 ? clk_start = time(NULL) : 0;
+	game->time = clk - clk_start;
 	mvwprintw(game->win.score, 0, 10, "SCOREBOARD");
 	mvwprintw(game->win.score, 2, 1, "High Score:\t%s",
 		display_high_score());
@@ -67,5 +69,5 @@ void display_score(game_t *game)
 	mvwprintw(game->win.score, 8, 1, "Lines:\t%d", 1);
 	mvwprintw(game->win.score, 10, 1, "Level:\t%d", game->key.level);
 	mvwprintw(game->win.score, 14, 1, "Timer:\t%.2d:%.2d",
-		game->time = (clk - clk_start) / 60, (clk - clk_start)% 60);
+		(clk - clk_start) / 60, (clk - clk_start) %  60);
 }

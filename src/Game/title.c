@@ -14,13 +14,13 @@
 
 void display_title(game_t *game)
 {
-	char **title = map_cr("titre");
+	char **title = map_cr(TITLE);
 	static int j = 1;
 	static int cl = -1;
 
 	time(NULL) != cl || !(rand() % 500) ? set_color(game->win.title, j) : 0;
 	cl = time(NULL);
-	for (int i = 0; i < count_row_map("titre"); i++)
+	for (int i = 0; i < count_row_map(TITLE); i++)
 		DISPLAY_TITLE;
 	j == 7 ? j = 1 : j++;
 }

@@ -23,17 +23,18 @@ void display_stat(game_t *game)
 	mvwprintw(game->win.game_over, 4, 1, "Score:\t%d", game->score);
 	mvwprintw(game->win.game_over, 10, 1, "Level:\t%d",
 		game->key.level);
-	mvwprintw(game->win.game_over, 14, 1, "Timer:\t%.2d:%.2d", game->time);
+	mvwprintw(game->win.game_over, 14, 1, "Timer:\t%.2d:%.2d",
+		game->time / 60 , game->time % 60);
 	wrefresh(game->win.game_over);
 }
 
 void game_over(game_t *game)
 {
-	char **gameover = map_cr("game_over");
+	char **gameover = map_cr(OVER);
 	char key[4] = {'\0'};
 
 	clear();
-	for (int i = 0; i < count_row_map("game_over"); i++) {
+	for (int i = 0; i < count_row_map(OVER); i++) {
 		set_color_without_win(i);
 		DISPLAY_GAMEOVER;
 	}

@@ -25,10 +25,10 @@ void my_sleep_pause(char key[4], game_t *game)
 
 void display_pause_grafiti(void)
 {
-	char **pause_m = map_cr("pause");
+	char **pause_m = map_cr(PAUSE);
 
 	clear();
-	for (int i = 0; i < count_row_map("pause"); i++) {
+	for (int i = 0; i < count_row_map(PAUSE); i++) {
 		set_color_without_win(i);
 		DISPLAY_PAUSE;
 	}

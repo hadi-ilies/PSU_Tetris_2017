@@ -11,44 +11,44 @@ SRCDIR	=	src/
 LIBDIR	=	lib/
 MAPDIR	=	$(SRCDIR)map/
 PARSDIR	=	$(SRCDIR)parsing/
+DEBUGDIR =	$(SRCDIR)DebugMode/
+GAMEDIR =	$(SRCDIR)Game/
 
-SRC	=	$(SRCDIR)main.c \
-		$(SRCDIR)insert_in_to_map.c \
-		$(SRCDIR)line_game.c \
-		$(SRCDIR)colisions.c \
-		$(SRCDIR)debug_sorting.c \
-		$(SRCDIR)take_filename.c \
-		$(SRCDIR)item_rotate_right.c \
-		$(SRCDIR)command.c \
-		$(SRCDIR)exit.c \
+SRC	=	$(GAMEDIR)main.c \
+		$(GAMEDIR)insert_in_to_map.c \
+		$(GAMEDIR)line_game.c \
+		$(GAMEDIR)colisions.c \
+		$(DEBUGDIR)debug_sorting.c \
+		$(DEBUGDIR)take_filename.c \
+		$(GAMEDIR)item_rotate_right.c \
+		$(GAMEDIR)command.c \
+		$(GAMEDIR)exit.c \
 		$(PARSDIR)parsing.c \
 		$(PARSDIR)parsing2.c \
 		$(PARSDIR)pars_key_command.c \
 		$(PARSDIR)pars_key_command2.c \
 		$(PARSDIR)pars_key_command3.c \
 		$(MAPDIR)map_create.c \
-		$(MAPDIR)map_copy.c \
 		$(MAPDIR)map_destroy.c \
-		$(MAPDIR)map_aff.c \
-		$(SRCDIR)read_no_block.c \
-		$(SRCDIR)score.c \
-		$(SRCDIR)game_over.c \
-		$(SRCDIR)pause.c \
-		$(SRCDIR)display_tetrominos.c \
-		$(SRCDIR)move_tetro.c \
-		$(SRCDIR)windows.c \
-		$(SRCDIR)next.c \
-		$(SRCDIR)check_dir.c \
-		$(SRCDIR)title.c \
-		$(SRCDIR)save_command_game2.c \
-		$(SRCDIR)save_command_game.c \
-		$(SRCDIR)game_create.c \
-		$(SRCDIR)colors.c \
-		$(SRCDIR)get_next_line.c \
-		$(SRCDIR)help.c \
-		$(SRCDIR)debug_mode.c \
-		$(SRCDIR)load_info_from_map.c \
-		$(SRCDIR)map.c
+		$(DEBUGDIR)read_no_block.c \
+		$(GAMEDIR)score.c \
+		$(GAMEDIR)game_over.c \
+		$(GAMEDIR)pause.c \
+		$(GAMEDIR)display_tetrominos.c \
+		$(GAMEDIR)move_tetro.c \
+		$(GAMEDIR)windows.c \
+		$(GAMEDIR)next.c \
+		$(DEBUGDIR)check_dir.c \
+		$(GAMEDIR)title.c \
+		$(DEBUGDIR)save_command_game2.c \
+		$(DEBUGDIR)save_command_game.c \
+		$(GAMEDIR)game_create.c \
+		$(GAMEDIR)colors.c \
+		$(GAMEDIR)get_next_line.c \
+		$(GAMEDIR)help.c \
+		$(DEBUGDIR)debug_mode.c \
+		$(DEBUGDIR)load_info_from_map.c \
+		$(DEBUGDIR)map.c
 
 OBJ	=	$(SRC:.c=.o)
 

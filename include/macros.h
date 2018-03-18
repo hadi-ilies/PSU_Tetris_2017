@@ -7,6 +7,10 @@
 
 #pragma once
 
+#define TITLE "FilesGame/titre"
+#define PAUSE "FilesGame/pause"
+#define OVER "FilesGame/game_over"
+#define B_SCORE "FilesGame/best_score.txt"
 #define D_N display_name(item[i].filename)
 #define L_L my_strncmp(argv[*i], "-L", 3) == -1 && \
 		my_strncmp(argv[*i], "-l", 3) == -1
@@ -41,7 +45,7 @@
 #define BORDER_WIN_TITLE wborder(game->win.title, '|', '|', '-', '-', '/', \
 				'\\', '\\', '/')
 #define DISPLAY_TITLE mvwprintw(game->win.title, 15 / 2 - count_row\
-_map("titre") / 2 + i, 50 / 2 - (count_col_map("titre") / 2), title[i])
+_map(TITLE) / 2 + i, 50 / 2 - (count_col_map(TITLE) / 2), title[i])
 
 #define DISPLAY_NEXT mvwprintw(game->win.next_i, 10 / 2 - game->tetrominos\
 		[game->rand_next].y / 2 + i, 20 / 2 - (game->tetrominos\
@@ -51,10 +55,10 @@ _map("titre") / 2 + i, 50 / 2 - (count_col_map("titre") / 2), title[i])
 	+ 1, cp_tetr[ID].coord_x + j + 1, "%c", cp_tetr[ID].item[i][j])
 #define DISPLAY_TETRI_BASE mvwprintw(game->win.win, j + 1, i + 1, "%c", \
 			game_map->tab[i][j]) : 0
-#define DISPLAY_PAUSE mvprintw(LINES / 2 - count_row_map("pause") / 2 + i, \
-			COLS / 2 - (count_col_map("pause") / 2), pause_m[i])
-#define DISPLAY_GAMEOVER mvprintw(LINES / 2 - count_row_map("game_over") / 2 +\
-		i, COLS / 2 - (count_col_map("game_over") / 2), gameover[i])
+#define DISPLAY_PAUSE mvprintw(LINES / 2 - count_row_map(PAUSE) / 2 + i, \
+			COLS / 2 - (count_col_map(PAUSE) / 2), pause_m[i])
+#define DISPLAY_GAMEOVER mvprintw(LINES / 2 - count_row_map(OVER) / 2 +\
+		i, COLS / 2 - (count_col_map(OVER) / 2), gameover[i])
 #define ID game->move.nb_tet
 #define C_X cp_tetr[game->move.nb_tet].coord_x
 #define C_Y cp_tetr[game->move.nb_tet].coord_y
