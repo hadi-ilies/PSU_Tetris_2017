@@ -29,7 +29,6 @@ SRC	=	$(GAMEDIR)main.c \
 		$(PARSDIR)pars_key_command2.c \
 		$(PARSDIR)pars_key_command3.c \
 		$(MAPDIR)map_create.c \
-		$(MAPDIR)map_destroy.c \
 		$(DEBUGDIR)read_no_block.c \
 		$(GAMEDIR)score.c \
 		$(GAMEDIR)game_over.c \
@@ -56,7 +55,6 @@ CFLAGS	+=	-I./include
 CFLAGS	+=	-W -Wall -Wextra
 CFLAGS	+=	-fdiagnostics-color
 CFLAGS	+=	-lncurses
-CFLAGS	+=	-g
 
 LDFLAGS	=	-L $(LIBDIR) -lmy
 

@@ -24,4 +24,3 @@ typedef struct
 } map_t;
 
 map_t map_create(size_t nb_case_x, size_t nb_case_y);
-void map_destroy(map_t *map);

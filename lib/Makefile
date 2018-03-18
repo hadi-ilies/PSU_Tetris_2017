@@ -11,7 +11,6 @@ SRC	=	my_strlen.c \
 		my_printf.c \
 		my_strcmp.c \
 		my_malloc.c \
-		my_malloc2.c \
 		strncmp.c \
 		inttostr.c \
 		my_atoi.c \
