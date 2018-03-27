@@ -16,7 +16,7 @@
 #include <fcntl.h>
 #include "my.h"
 #include "prototype.h"
-
+/*
 void there_is_error_size(game_t *game, char **argv)
 {
 	if (game->key.size_height < 20 || game->key.size_height > 50
@@ -25,7 +25,7 @@ void there_is_error_size(game_t *game, char **argv)
 		exit (84);
 	}
 }
-
+*/
 void check_error_size2(char **argv, int *i)
 {
 	int j = 0;

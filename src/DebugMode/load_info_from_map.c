@@ -34,6 +34,14 @@ void purge_str(item_t *item, int *i, int fd)
 	item[*i].str = get_next_line(fd);
 	item[*i].item = mem_alloc_2d_array(item[*i].y, item[*i].x);
 	for (int j = 0; item[*i].str != NULL; j++) {
+		/*	int t = 0;
+
+		for (int k = 0; item[*i].str[k] != '\0'; k++) {
+			item[*i].str[k] == '*' ? item[*i].item[j][t] = item[*i].str[k] : 0;
+			printf("%c", item[*i].item[j][t]);
+			item[*i].str[k] == '*' ? t++ : 0;
+		}
+		item[*i].item[j][t] = '\0';*/
 		item[*i].item[j] = item[*i].str;
 		item[*i].str = get_next_line(fd);
 	}
