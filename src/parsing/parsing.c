@@ -33,8 +33,8 @@ void parse_arg(char **argv, int *i)
 		help(argv);
 		exit (84);
 	} if (my_strlen(argv[*i]) == 1 && parse_touch(argv, i) == false) {
-		  help(argv);
-		  exit (84);
+		help(argv);
+		exit (84);
 	} else
 		return;
 }

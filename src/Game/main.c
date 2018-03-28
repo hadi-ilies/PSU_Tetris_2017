@@ -89,7 +89,7 @@ int main(int argc, char **argv, char **env)
 		debug_mode(argv, argc);
 		bol = true;
 	} if (bol == true)
-		  return (item_tetris(argc, argv));
+		return (item_tetris(argc, argv));
 	else
 		return (0);
 }

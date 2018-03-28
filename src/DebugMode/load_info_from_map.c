@@ -34,14 +34,6 @@ void purge_str(item_t *item, int *i, int fd)
 	item[*i].str = get_next_line(fd);
 	item[*i].item = mem_alloc_2d_array(item[*i].y, item[*i].x);
 	for (int j = 0; item[*i].str != NULL; j++) {
-		/*	int t = 0;
-
-		for (int k = 0; item[*i].str[k] != '\0'; k++) {
-			item[*i].str[k] == '*' ? item[*i].item[j][t] = item[*i].str[k] : 0;
-			printf("%c", item[*i].item[j][t]);
-			item[*i].str[k] == '*' ? t++ : 0;
-		}
-		item[*i].item[j][t] = '\0';*/
 		item[*i].item[j] = item[*i].str;
 		item[*i].str = get_next_line(fd);
 	}
@@ -101,7 +93,8 @@ int count_file(void)
 		exit(84);
 	while ((d = readdir(dir))) {
 		(d == NULL) ? exit(84) : 0;
-		if (d->d_name[0] != '.' && T_FILE)
+		if ((is_regular_file(concat("tetriminos/", d->d_name))
+		&& T_FILE) || (d->d_name[0] == '.' && d->d_name[1] > '.'))
 			nb_file++;
 	}
 	closedir(dir);

@@ -57,7 +57,7 @@ typedef struct {
 	move_t move;
 	item_t *tetrominos;
 } game_t;
-
+int is_regular_file(const char *path);
 int my_strcmp(char *s1, char *s2);
 char *inttostr(int nb);
 char **my_str_to_word_array(char *str);

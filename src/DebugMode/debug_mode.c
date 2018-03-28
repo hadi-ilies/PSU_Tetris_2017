@@ -28,8 +28,11 @@ char *display_name(char *str)
 	char *S1 = my_malloc(sizeof(char) * my_strlen(str));
 	int i = 0;
 
-	for (i = 0; str[i] != '.'; i++)
+	for (i = 0; str[i] != '\0'; i++) {
+		if (str[i] == '.' && my_strncmp(str + i, ".tetrimino", 11) == 0)
+			break;
 		S1[i] = str[i];
+	}
 	S1[i] = '\0';
 	return (S1);
 }

@@ -46,8 +46,8 @@ int take_filename(item_t *item)
 		exit(84);
 	while ((d = readdir(dir))) {
 		d == NULL ? exit (84) : 0;
-		if (is_regular_file(concat("tetriminos/", d->d_name))
-		&& T_FILE){
+		if ((is_regular_file(concat("tetriminos/", d->d_name))
+		&& T_FILE) || (d->d_name[0] == '.' && d->d_name[1] > '.')) {
 			for (j = 0; d->d_name[j] > ' '; j++)
 				item[i].filename[j] = d->d_name[j];
 			item[i].filename[j] = '\0';
